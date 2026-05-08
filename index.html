@@ -1,5 +1,4 @@
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -22,10 +21,9 @@
             --location-color: #eb4d4b;
         }
 
-        /* Bloqueio adicional de zoom e gestos nativos via CSS */
         html, body { 
             scroll-behavior: smooth; 
-            touch-action: pan-x pan-y; /* Permite rolar, mas bloqueia o zoom de pinça */
+            touch-action: pan-x pan-y;
             -webkit-text-size-adjust: 100%;
         }
 
@@ -35,7 +33,7 @@
             margin: 0;
             display: flex;
             justify-content: center;
-            overscroll-behavior-y: contain; /* Evita aquele "puxão" no topo da página */
+            overscroll-behavior-y: contain;
         }
 
         .container {
@@ -125,7 +123,9 @@
         }
     </style>
 </head>
-<body oncontextmenu="return false;"> <div class="container">
+<body oncontextmenu="return false;">
+
+<div class="container">
     <img src="https://i.ibb.co.com/YB9XJVNt/Whats-App-Image-2026-05-07-at-09-42-31.jpg" class="banner-img">
 
     <div class="profile-section">
@@ -197,7 +197,7 @@
     </div>
 </div>
 
-<script src="https://pl29364317.profitablecpmratenetwork.com/85/9f/27/859f279e8bca8a8e9e78cc3a6c90d852.js"></script>
+<script src="https://pl29368197.profitablecpmratenetwork.com/76/50/66/7650664099af8bf18005430efb542dcb.js"></script>
 
 <script>
     function directOrder() {
@@ -210,7 +210,6 @@
         window.location.href = "whatsapp://send?text=" + encodeURIComponent(shareText);
     }
 
-    // Trava de zoom via JavaScript para navegadores que ignoram a meta tag
     document.addEventListener('touchstart', function (event) {
         if (event.touches.length > 1) {
             event.preventDefault();
