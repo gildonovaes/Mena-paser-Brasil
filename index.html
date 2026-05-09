@@ -48,7 +48,6 @@
         .item-name { font-weight: 600; font-size: 16px; color: #333; flex-grow: 1; }
         .item-price { color: var(--primary-color); font-weight: bold; font-size: 15px; text-align: right; }
 
-        /* SETA DE INDICAÇÃO (OVERLAY) */
         #scroll-indicator {
             position: fixed;
             bottom: 40px;
@@ -60,6 +59,7 @@
             align-items: center;
             transition: opacity 0.4s ease, transform 0.4s ease;
             pointer-events: auto;
+            opacity: 1; /* Começa visível pois inicia no topo */
         }
 
         .social-label-alert { 
@@ -77,7 +77,6 @@
 
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-12px);} 60% {transform: translateY(-6px);} }
 
-        /* BOTÕES */
         .btn-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 0 30px; margin-top: 20px; }
         .btn { 
             display: flex; align-items: center; justify-content: center; width: 100%; max-width: 320px; padding: 16px; 
@@ -113,11 +112,9 @@
 
 <div class="container">
     <img src="https://i.ibb.co.com/YB9XJVNt/Whats-App-Image-2026-05-07-at-09-42-31.jpg" class="banner-img">
-
     <div class="profile-section">
         <img src="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png" class="profile-img">
     </div>
-
     <div class="store-name">Warung Mena Paser Brasil</div>
 
     <div class="menu-list">
@@ -126,26 +123,21 @@
             <span class="item-name">Gado-gado</span>
             <span class="item-price">Rp 15.000</span>
         </div>
-
         <div class="menu-item">
             <img src="https://i.ibb.co.com/mrjDRBpz/Whats-App-2026-05-07-at-09-41-26.jpg" class="item-img" onclick="openZoom(this.src)">
             <span class="item-name">Rujak</span>
             <span class="item-price">Rp 15.000</span>
         </div>
-
         <div class="menu-item">
-            <!-- FOTO ATUALIZADA DO TEH ES ABAIXO -->
             <img src="https://i.ibb.co.com/m5ZTYqxb/Whats-App2026-05-09-at-09-29-21.jpg" class="item-img" onclick="openZoom(this.src)">
             <span class="item-name">Teh es</span>
             <span class="item-price">Rp 5.000</span>
         </div>
-
         <div class="menu-item">
             <img src="https://i.ibb.co.com/HTgxQHQg/Whats-App-2026-05-09-at-09-15-18.jpg" class="item-img" onclick="openZoom(this.src)">
             <span class="item-name">Kopi Hitam</span>
             <span class="item-price">Rp 5.000</span>
         </div>
-
         <div class="menu-item">
             <div style="width: 60px;"></div>
             <span class="item-name">Delivery (Batu Kajang)</span>
@@ -170,20 +162,33 @@
     </div>
 </div>
 
+<script src="https://pl29368197.profitablecpmratenetwork.com/76/50/66/7650664099af8bf18005430efb542dcb.js"></script>
+
 <script>
     const indicator = document.getElementById('scroll-indicator');
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            indicator.style.opacity = "0";
-            indicator.style.pointerEvents = "none";
-            indicator.style.transform = "translateX(-50%) translateY(20px)";
-        } else {
+    function updateArrowVisibility() {
+        // Se a rolagem for quase zero (topo da página)
+        if (window.scrollY < 20) {
             indicator.style.opacity = "1";
             indicator.style.pointerEvents = "auto";
             indicator.style.transform = "translateX(-50%) translateY(0)";
+        } else {
+            // Esconde em qualquer outra posição
+            indicator.style.opacity = "0";
+            indicator.style.pointerEvents = "none";
+            indicator.style.transform = "translateX(-50%) translateY(20px)";
         }
-    });
+    }
+
+    // Monitora a rolagem
+    window.addEventListener('scroll', updateArrowVisibility);
+
+    // Garante que ao voltar de um link (foco da aba), a seta obedeça a regra
+    window.addEventListener('focus', updateArrowVisibility);
+    
+    // Roda uma vez ao carregar para garantir o estado inicial
+    updateArrowVisibility();
 
     function openZoom(imgSrc) {
         document.getElementById('zoomed-image').src = imgSrc;
