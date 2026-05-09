@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -5,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <title>Kartu Nama Digital Warung Mena Paser Brasil</title>
+
+    <!-- APENAS A LOGO NO ÍCONE ADICIONADA ABAIXO -->
+    <link rel="icon" type="image/png" href="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
+    <link rel="apple-touch-icon" href="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
+    
     <meta property="og:title" content="Kartu Nama Digital Warung Mena Paser Brasil 🇧🇷🇮🇩">
     <meta property="og:description" content="Warung Mena Paser Brasil: Klik untuk melihat menu lezat kami!">
     <meta property="og:image" content="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
@@ -38,18 +44,51 @@
 
         .menu-list { padding: 0 20px; text-align: left; margin-bottom: 5px; }
         .menu-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; gap: 12px; min-height: 55px; }
-        .item-img { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; cursor: pointer; animation: pulse-flame 2s infinite ease-in-out; }
+
+        .item-img {
+            width: 60px; height: 60px; border-radius: 10px; object-fit: cover; cursor: pointer;
+            animation: pulse-flame 2s infinite ease-in-out;
+        }
+
         .item-name { font-weight: 600; font-size: 16px; color: #333; flex-grow: 1; }
         .item-price { color: var(--primary-color); font-weight: bold; font-size: 15px; text-align: right; }
 
-        #scroll-indicator { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 99999; display: flex; flex-direction: column; align-items: center; transition: opacity 0.4s ease, transform 0.4s ease; pointer-events: auto; opacity: 1; }
-        .social-label-alert { font-size: 11px; font-weight: bold; color: white; background: var(--primary-color); padding: 4px 12px; border-radius: 20px; text-transform: uppercase; margin-bottom: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        .arrow-circle { width: 55px; height: 55px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.4); border: 3px solid white; cursor: pointer; animation: bounce 2s infinite; }
+        #scroll-indicator {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        .social-label-alert { 
+            font-size: 11px; font-weight: bold; color: white; background: var(--primary-color); 
+            padding: 4px 12px; border-radius: 20px; text-transform: uppercase; margin-bottom: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .arrow-circle { 
+            width: 55px; height: 55px; background: var(--primary-color); border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4); border: 3px solid white; cursor: pointer;
+            animation: bounce 2s infinite;
+        }
 
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-12px);} 60% {transform: translateY(-6px);} }
 
         .btn-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 0 30px; margin-top: 20px; }
-        .btn { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 320px; padding: 16px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 17px; border: none; cursor: pointer; color: white; box-sizing: border-box; animation: pulse-flame 2.5s infinite ease-in-out; font-family: inherit; }
+        .btn { 
+            display: flex; align-items: center; justify-content: center; width: 100%; max-width: 320px; padding: 16px; 
+            border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 17px; border: none; cursor: pointer; color: white; box-sizing: border-box;
+            animation: pulse-flame 2.5s infinite ease-in-out;
+        }
+
         .btn-order { background-color: var(--whatsapp-color); --flame-color: rgba(37, 211, 102, 0.5); }
         .btn-instagram { background-color: var(--instagram-color); --flame-color: rgba(225, 48, 108, 0.5); }
         .btn-facebook { background-color: var(--facebook-color); --flame-color: rgba(24, 119, 242, 0.5); }
@@ -60,6 +99,7 @@
         #image-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000000; justify-content: center; align-items: center; }
         #image-overlay img { max-width: 90%; max-height: 75%; border-radius: 12px; border: 3px solid white; }
         .close-zoom { position: absolute; top: 30px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
+
         .visit-counter { margin-top: 30px; font-size: 12px; color: #95a5a6; display: flex; flex-direction: column; align-items: center; gap: 5px; }
         .visit-counter img { border-radius: 4px; opacity: 0.8; }
         .footer-sales { background: #f8f9fa; padding: 25px; font-size: 13px; color: #7f8c8d; border-top: 1px solid #eee; margin-top: 15px; }
@@ -111,10 +151,7 @@
 
     <div class="btn-wrapper">
         <button onclick="directOrder()" class="btn btn-order">🛒 Pesan Sekarang (WhatsApp)</button>
-        
-        <!-- VOLTAMOS AO LINK PADRÃO QUE VOCÊ PREFERIU -->
         <a href="https://www.instagram.com/ningsihnovaes_darikampung" class="btn btn-instagram">📸 Instagram</a>
-        
         <a href="https://www.facebook.com/share/1CbNQM6YHw/" class="btn btn-facebook">🔵 Facebook</a>
         <a href="https://www.tiktok.com/@ningsihnovaes" class="btn btn-tiktok">🎵 TikTok</a>
         <a href="https://maps.google.com/?q=Warung+Mena+Paser+Brasil" class="btn btn-location">📍 Lokasi Warung (GPS)</a>
@@ -136,31 +173,42 @@
 
 <script>
     const indicator = document.getElementById('scroll-indicator');
+
     function updateArrowVisibility() {
         if (window.scrollY < 20) {
             indicator.style.opacity = "1";
             indicator.style.pointerEvents = "auto";
+            indicator.style.transform = "translateX(-50%) translateY(0)";
         } else {
             indicator.style.opacity = "0";
             indicator.style.pointerEvents = "none";
+            indicator.style.transform = "translateX(-50%) translateY(20px)";
         }
     }
 
     window.addEventListener('scroll', updateArrowVisibility);
+    window.addEventListener('focus', updateArrowVisibility);
+    updateArrowVisibility();
+
     function openZoom(imgSrc) {
         document.getElementById('zoomed-image').src = imgSrc;
         document.getElementById('image-overlay').style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
+
     function closeZoom() {
         document.getElementById('image-overlay').style.display = 'none';
         document.body.style.overflow = 'auto';
     }
+
     function directOrder() {
-        window.location.href = "whatsapp://send?phone=6281241431977&text=Halo!";
+        var msg = "Halo! Saya mau pesan. Apa menu spesial hari ini?";
+        window.location.href = "whatsapp://send?phone=6281241431977&text=" + encodeURIComponent(msg);
     }
+
     function directShare() {
-        window.location.href = "whatsapp://send?text=" + encodeURIComponent(window.location.href);
+        var shareText = "Halo! Coba lihat menu lezat dari Warung Mena Paser Brasil di sini: " + window.location.href.split('#')[0];
+        window.location.href = "whatsapp://send?text=" + encodeURIComponent(shareText);
     }
 </script>
 
