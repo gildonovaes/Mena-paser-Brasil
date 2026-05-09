@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -39,51 +38,18 @@
 
         .menu-list { padding: 0 20px; text-align: left; margin-bottom: 5px; }
         .menu-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; gap: 12px; min-height: 55px; }
-
-        .item-img {
-            width: 60px; height: 60px; border-radius: 10px; object-fit: cover; cursor: pointer;
-            animation: pulse-flame 2s infinite ease-in-out;
-        }
-
+        .item-img { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; cursor: pointer; animation: pulse-flame 2s infinite ease-in-out; }
         .item-name { font-weight: 600; font-size: 16px; color: #333; flex-grow: 1; }
         .item-price { color: var(--primary-color); font-weight: bold; font-size: 15px; text-align: right; }
 
-        #scroll-indicator {
-            position: fixed;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 99999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            pointer-events: auto;
-            opacity: 1; /* Começa visível pois inicia no topo */
-        }
-
-        .social-label-alert { 
-            font-size: 11px; font-weight: bold; color: white; background: var(--primary-color); 
-            padding: 4px 12px; border-radius: 20px; text-transform: uppercase; margin-bottom: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .arrow-circle { 
-            width: 55px; height: 55px; background: var(--primary-color); border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; 
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4); border: 3px solid white; cursor: pointer;
-            animation: bounce 2s infinite;
-        }
+        #scroll-indicator { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 99999; display: flex; flex-direction: column; align-items: center; transition: opacity 0.4s ease, transform 0.4s ease; pointer-events: auto; opacity: 1; }
+        .social-label-alert { font-size: 11px; font-weight: bold; color: white; background: var(--primary-color); padding: 4px 12px; border-radius: 20px; text-transform: uppercase; margin-bottom: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .arrow-circle { width: 55px; height: 55px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.4); border: 3px solid white; cursor: pointer; animation: bounce 2s infinite; }
 
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-12px);} 60% {transform: translateY(-6px);} }
 
         .btn-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 0 30px; margin-top: 20px; }
-        .btn { 
-            display: flex; align-items: center; justify-content: center; width: 100%; max-width: 320px; padding: 16px; 
-            border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 17px; border: none; cursor: pointer; color: white; box-sizing: border-box;
-            animation: pulse-flame 2.5s infinite ease-in-out;
-        }
-
+        .btn { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 320px; padding: 16px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 17px; border: none; cursor: pointer; color: white; box-sizing: border-box; animation: pulse-flame 2.5s infinite ease-in-out; font-family: inherit; }
         .btn-order { background-color: var(--whatsapp-color); --flame-color: rgba(37, 211, 102, 0.5); }
         .btn-instagram { background-color: var(--instagram-color); --flame-color: rgba(225, 48, 108, 0.5); }
         .btn-facebook { background-color: var(--facebook-color); --flame-color: rgba(24, 119, 242, 0.5); }
@@ -94,8 +60,9 @@
         #image-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000000; justify-content: center; align-items: center; }
         #image-overlay img { max-width: 90%; max-height: 75%; border-radius: 12px; border: 3px solid white; }
         .close-zoom { position: absolute; top: 30px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
-
-        .footer-sales { background: #f8f9fa; padding: 25px; font-size: 13px; color: #7f8c8d; border-top: 1px solid #eee; margin-top: 30px; }
+        .visit-counter { margin-top: 30px; font-size: 12px; color: #95a5a6; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .visit-counter img { border-radius: 4px; opacity: 0.8; }
+        .footer-sales { background: #f8f9fa; padding: 25px; font-size: 13px; color: #7f8c8d; border-top: 1px solid #eee; margin-top: 15px; }
     </style>
 </head>
 <body oncontextmenu="return false;">
@@ -138,22 +105,25 @@
             <span class="item-name">Kopi Hitam</span>
             <span class="item-price">Rp 5.000</span>
         </div>
-        <div class="menu-item">
-            <div style="width: 60px;"></div>
-            <span class="item-name">Delivery (Batu Kajang)</span>
-            <span class="item-price" style="color: #2ecc71;">Gratis</span>
-        </div>
     </div>
 
     <div id="social-section" style="padding-top: 10px;"></div>
 
     <div class="btn-wrapper">
         <button onclick="directOrder()" class="btn btn-order">🛒 Pesan Sekarang (WhatsApp)</button>
+        
+        <!-- VOLTAMOS AO LINK PADRÃO QUE VOCÊ PREFERIU -->
         <a href="https://www.instagram.com/ningsihnovaes_darikampung" class="btn btn-instagram">📸 Instagram</a>
+        
         <a href="https://www.facebook.com/share/1CbNQM6YHw/" class="btn btn-facebook">🔵 Facebook</a>
         <a href="https://www.tiktok.com/@ningsihnovaes" class="btn btn-tiktok">🎵 TikTok</a>
         <a href="https://maps.google.com/?q=Warung+Mena+Paser+Brasil" class="btn btn-location">📍 Lokasi Warung (GPS)</a>
         <button onclick="directShare()" class="btn btn-share">📲 Bagikan ke Teman</button>
+    </div>
+
+    <div class="visit-counter">
+        <span>Pengunjung kartu nama:</span>
+        <img src="https://counter8.optistats.ovh/private/freecounterstat.php?c=8zll9m9zbe6x1e2y1f21nd6k3q9lql2u" title="free counter" alt="free counter">
     </div>
 
     <div class="footer-sales">
@@ -166,49 +136,31 @@
 
 <script>
     const indicator = document.getElementById('scroll-indicator');
-
     function updateArrowVisibility() {
-        // Se a rolagem for quase zero (topo da página)
         if (window.scrollY < 20) {
             indicator.style.opacity = "1";
             indicator.style.pointerEvents = "auto";
-            indicator.style.transform = "translateX(-50%) translateY(0)";
         } else {
-            // Esconde em qualquer outra posição
             indicator.style.opacity = "0";
             indicator.style.pointerEvents = "none";
-            indicator.style.transform = "translateX(-50%) translateY(20px)";
         }
     }
 
-    // Monitora a rolagem
     window.addEventListener('scroll', updateArrowVisibility);
-
-    // Garante que ao voltar de um link (foco da aba), a seta obedeça a regra
-    window.addEventListener('focus', updateArrowVisibility);
-    
-    // Roda uma vez ao carregar para garantir o estado inicial
-    updateArrowVisibility();
-
     function openZoom(imgSrc) {
         document.getElementById('zoomed-image').src = imgSrc;
         document.getElementById('image-overlay').style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
-
     function closeZoom() {
         document.getElementById('image-overlay').style.display = 'none';
         document.body.style.overflow = 'auto';
     }
-
     function directOrder() {
-        var msg = "Halo! Saya mau pesan. Apa menu spesial hari ini?";
-        window.location.href = "whatsapp://send?phone=6281241431977&text=" + encodeURIComponent(msg);
+        window.location.href = "whatsapp://send?phone=6281241431977&text=Halo!";
     }
-
     function directShare() {
-        var shareText = "Halo! Coba lihat menu lezat dari Warung Mena Paser Brasil di sini: " + window.location.href.split('#')[0];
-        window.location.href = "whatsapp://send?text=" + encodeURIComponent(shareText);
+        window.location.href = "whatsapp://send?text=" + encodeURIComponent(window.location.href);
     }
 </script>
 
