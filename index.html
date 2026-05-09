@@ -1,4 +1,5 @@
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +9,6 @@
     <meta property="og:title" content="Kartu Nama Digital Warung Mena Paser Brasil 🇧🇷🇮🇩">
     <meta property="og:description" content="Warung Mena Paser Brasil: Klik untuk melihat menu lezat kami!">
     <meta property="og:image" content="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
-    <meta property="og:type" content="website">
 
     <style>
         :root {
@@ -19,111 +19,97 @@
             --facebook-color: #1877F2;
             --tiktok-color: #000000;
             --location-color: #eb4d4b;
+            --flame-color: rgba(230, 126, 34, 0.6);
         }
 
-        html, body { 
-            scroll-behavior: smooth; 
-            touch-action: pan-x pan-y;
-            -webkit-text-size-adjust: 100%;
-        }
+        html, body { scroll-behavior: smooth; touch-action: pan-x pan-y; -webkit-text-size-adjust: 100%; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; display: flex; justify-content: center; overscroll-behavior-y: contain; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            overscroll-behavior-y: contain;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 480px;
-            background: white;
-            min-height: 100vh;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            text-align: center;
-            position: relative;
-            padding-bottom: 50px;
-        }
-
+        .container { width: 100%; max-width: 480px; background: white; min-height: 100vh; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: center; position: relative; padding-bottom: 50px; }
         .banner-img { width: 100%; height: 220px; object-fit: cover; }
         .profile-section { margin-top: -60px; position: relative; }
-        
-        .profile-img {
-            width: 120px; height: 120px; border-radius: 50%;
-            border: 5px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            object-fit: cover; background-color: white;
-        }
-
+        .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 5px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); object-fit: cover; background-color: white; }
         .store-name { font-size: 26px; font-weight: bold; color: #2c3e50; margin: 10px 0 5px; }
 
-        .security-badge {
-            display: inline-flex; align-items: center; background: #e8f5e9;
-            color: #2e7d32; padding: 5px 15px; border-radius: 20px;
-            font-size: 14px; margin-bottom: 20px;
+        @keyframes pulse-flame {
+            0% { transform: scale(1); box-shadow: 0 0 5px var(--flame-color); }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px var(--flame-color), 0 0 30px rgba(255, 165, 0, 0.4); }
+            100% { transform: scale(1); box-shadow: 0 0 5px var(--flame-color); }
         }
 
-        .scroll-arrow {
-            display: inline-flex;
-            text-decoration: none;
+        .menu-list { padding: 0 20px; text-align: left; margin-bottom: 5px; }
+        .menu-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; gap: 12px; min-height: 55px; }
+
+        .item-img {
+            width: 60px; height: 60px; border-radius: 10px; object-fit: cover; cursor: pointer;
+            animation: pulse-flame 2s infinite ease-in-out;
+        }
+
+        .item-name { font-weight: 600; font-size: 16px; color: #333; flex-grow: 1; }
+        .item-price { color: var(--primary-color); font-weight: bold; font-size: 15px; text-align: right; }
+
+        /* SETA DE INDICAÇÃO (OVERLAY) */
+        #scroll-indicator {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: auto;
+        }
+
+        .social-label-alert { 
+            font-size: 11px; font-weight: bold; color: white; background: var(--primary-color); 
+            padding: 4px 12px; border-radius: 20px; text-transform: uppercase; margin-bottom: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .arrow-circle { 
+            width: 55px; height: 55px; background: var(--primary-color); border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4); border: 3px solid white; cursor: pointer;
             animation: bounce 2s infinite;
-            margin-top: 20px;
         }
 
-        .arrow-circle {
-            width: 45px; height: 45px; background: var(--primary-color);
-            border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; color: white; font-size: 24px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            border: 2px solid white;
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-12px);} 60% {transform: translateY(-6px);} }
+
+        /* BOTÕES */
+        .btn-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 0 30px; margin-top: 20px; }
+        .btn { 
+            display: flex; align-items: center; justify-content: center; width: 100%; max-width: 320px; padding: 16px; 
+            border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 17px; border: none; cursor: pointer; color: white; box-sizing: border-box;
+            animation: pulse-flame 2.5s infinite ease-in-out;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
+        .btn-order { background-color: var(--whatsapp-color); --flame-color: rgba(37, 211, 102, 0.5); }
+        .btn-instagram { background-color: var(--instagram-color); --flame-color: rgba(225, 48, 108, 0.5); }
+        .btn-facebook { background-color: var(--facebook-color); --flame-color: rgba(24, 119, 242, 0.5); }
+        .btn-tiktok { background-color: var(--tiktok-color); --flame-color: rgba(0, 0, 0, 0.3); }
+        .btn-location { background-color: var(--location-color); --flame-color: rgba(235, 77, 75, 0.5); }
+        .btn-share { background-color: var(--share-color); --flame-color: rgba(52, 152, 219, 0.5); }
 
-        .btn-wrapper {
-            display: flex; flex-direction: column; align-items: center;
-            gap: 15px; padding: 0 30px; margin-top: 10px;
-        }
+        #image-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000000; justify-content: center; align-items: center; }
+        #image-overlay img { max-width: 90%; max-height: 75%; border-radius: 12px; border: 3px solid white; }
+        .close-zoom { position: absolute; top: 30px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
 
-        .btn {
-            display: flex; align-items: center; justify-content: center;
-            width: 100%; max-width: 320px; padding: 18px;
-            border-radius: 50px; text-decoration: none; font-weight: bold;
-            font-size: 17px; border: none; cursor: pointer;
-            color: white; box-sizing: border-box;
-        }
-
-        @keyframes glow-wa { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
-        @keyframes glow-ig { 0% { box-shadow: 0 0 0 0 rgba(225, 48, 108, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(225, 48, 108, 0); } 100% { box-shadow: 0 0 0 0 rgba(225, 48, 108, 0); } }
-        @keyframes glow-fb { 0% { box-shadow: 0 0 0 0 rgba(24, 119, 242, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(24, 119, 242, 0); } 100% { box-shadow: 0 0 0 0 rgba(24, 119, 242, 0); } }
-        @keyframes glow-tk { 0% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4); } 70% { box-shadow: 0 0 0 12px rgba(0, 0, 0, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); } }
-        @keyframes glow-gps { 0% { box-shadow: 0 0 0 0 rgba(235, 77, 75, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(235, 77, 75, 0); } 100% { box-shadow: 0 0 0 0 rgba(235, 77, 75, 0); } }
-        @keyframes glow-share { 0% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(52, 152, 219, 0); } 100% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); } }
-
-        .btn-order { background-color: var(--whatsapp-color); animation: glow-wa 2s infinite; }
-        .btn-instagram { background-color: var(--instagram-color); animation: glow-ig 2.2s infinite; }
-        .btn-facebook { background-color: var(--facebook-color); animation: glow-fb 2.4s infinite; }
-        .btn-tiktok { background-color: var(--tiktok-color); animation: glow-tk 2.6s infinite; }
-        .btn-location { background-color: var(--location-color); animation: glow-gps 2.8s infinite; }
-        .btn-share { background-color: var(--share-color); animation: glow-share 2s infinite; }
-
-        .menu-list { padding: 0 25px; text-align: left; margin-bottom: 10px; }
-        .menu-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; }
-        .item-name { font-weight: 600; font-size: 17px; }
-        .item-price { color: #e67e22; font-weight: bold; }
-
-        .footer-sales {
-            background: #f8f9fa; padding: 25px; font-size: 13px;
-            color: #7f8c8d; border-top: 1px solid #eee; margin-top: 30px;
-        }
+        .footer-sales { background: #f8f9fa; padding: 25px; font-size: 13px; color: #7f8c8d; border-top: 1px solid #eee; margin-top: 30px; }
     </style>
 </head>
 <body oncontextmenu="return false;">
+
+<div id="scroll-indicator">
+    <span class="social-label-alert">Lihat Menu & Sosial</span>
+    <div class="arrow-circle" onclick="document.getElementById('social-section').scrollIntoView();">↓</div>
+</div>
+
+<div id="image-overlay" onclick="closeZoom()">
+    <span class="close-zoom">&times;</span>
+    <img id="zoomed-image" src="" alt="Zoom">
+</div>
 
 <div class="container">
     <img src="https://i.ibb.co.com/YB9XJVNt/Whats-App-Image-2026-05-07-at-09-42-31.jpg" class="banner-img">
@@ -133,62 +119,49 @@
     </div>
 
     <div class="store-name">Warung Mena Paser Brasil</div>
-    
-    <div class="security-badge">
-        <span style="margin-right: 5px;">🔒</span> Transaksi Aman & Terpercaya
-    </div>
 
     <div class="menu-list">
         <div class="menu-item">
+            <img src="https://i.ibb.co.com/8Ds7R1Vm/Whats-App-2026-05-07-at-09-52-39.jpg" class="item-img" onclick="openZoom(this.src)">
             <span class="item-name">Gado-gado</span>
             <span class="item-price">Rp 15.000</span>
         </div>
+
         <div class="menu-item">
+            <img src="https://i.ibb.co.com/mrjDRBpz/Whats-App-2026-05-07-at-09-41-26.jpg" class="item-img" onclick="openZoom(this.src)">
             <span class="item-name">Rujak</span>
             <span class="item-price">Rp 15.000</span>
         </div>
+
         <div class="menu-item">
-            <span class="item-name">Teh Hangat</span>
+            <!-- FOTO ATUALIZADA DO TEH ES ABAIXO -->
+            <img src="https://i.ibb.co.com/m5ZTYqxb/Whats-App2026-05-09-at-09-29-21.jpg" class="item-img" onclick="openZoom(this.src)">
+            <span class="item-name">Teh es</span>
             <span class="item-price">Rp 5.000</span>
         </div>
+
         <div class="menu-item">
-            <span class="item-name">Delivery</span>
-            <span class="item-price">Batu Kajang GRATIS</span>
+            <img src="https://i.ibb.co.com/HTgxQHQg/Whats-App-2026-05-09-at-09-15-18.jpg" class="item-img" onclick="openZoom(this.src)">
+            <span class="item-name">Kopi Hitam</span>
+            <span class="item-price">Rp 5.000</span>
+        </div>
+
+        <div class="menu-item">
+            <div style="width: 60px;"></div>
+            <span class="item-name">Delivery (Batu Kajang)</span>
+            <span class="item-price" style="color: #2ecc71;">Gratis</span>
         </div>
     </div>
 
-    <div style="text-align: center;">
-        <a href="#botoes-secao" class="scroll-arrow">
-            <div class="arrow-circle">↓</div>
-        </a>
-    </div>
-
-    <div id="botoes-secao" style="padding-top: 20px;"></div>
+    <div id="social-section" style="padding-top: 10px;"></div>
 
     <div class="btn-wrapper">
-        <button onclick="directOrder()" class="btn btn-order">
-            🛒 Pesan Sekarang (WhatsApp)
-        </button>
-
-        <a href="https://www.instagram.com/ningsihnovaes_darikampung" class="btn btn-instagram">
-            📸 Instagram
-        </a>
-
-        <a href="https://www.facebook.com/share/1CbNQM6YHw/" class="btn btn-facebook">
-            🔵 Facebook
-        </a>
-
-        <a href="https://www.tiktok.com/@ningsihnovaes" class="btn btn-tiktok">
-            🎵 TikTok
-        </a>
-
-        <a href="https://maps.google.com/?q=Warung+Mena+Paser+Brasil" class="btn btn-location">
-            📍 Lokasi Warung (GPS)
-        </a>
-
-        <button onclick="directShare()" class="btn btn-share">
-            📲 Bagikan ke Teman
-        </button>
+        <button onclick="directOrder()" class="btn btn-order">🛒 Pesan Sekarang (WhatsApp)</button>
+        <a href="https://www.instagram.com/ningsihnovaes_darikampung" class="btn btn-instagram">📸 Instagram</a>
+        <a href="https://www.facebook.com/share/1CbNQM6YHw/" class="btn btn-facebook">🔵 Facebook</a>
+        <a href="https://www.tiktok.com/@ningsihnovaes" class="btn btn-tiktok">🎵 TikTok</a>
+        <a href="https://maps.google.com/?q=Warung+Mena+Paser+Brasil" class="btn btn-location">📍 Lokasi Warung (GPS)</a>
+        <button onclick="directShare()" class="btn btn-share">📲 Bagikan ke Teman</button>
     </div>
 
     <div class="footer-sales">
@@ -197,9 +170,32 @@
     </div>
 </div>
 
-<script src="https://pl29368197.profitablecpmratenetwork.com/76/50/66/7650664099af8bf18005430efb542dcb.js"></script>
-
 <script>
+    const indicator = document.getElementById('scroll-indicator');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            indicator.style.opacity = "0";
+            indicator.style.pointerEvents = "none";
+            indicator.style.transform = "translateX(-50%) translateY(20px)";
+        } else {
+            indicator.style.opacity = "1";
+            indicator.style.pointerEvents = "auto";
+            indicator.style.transform = "translateX(-50%) translateY(0)";
+        }
+    });
+
+    function openZoom(imgSrc) {
+        document.getElementById('zoomed-image').src = imgSrc;
+        document.getElementById('image-overlay').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeZoom() {
+        document.getElementById('image-overlay').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
     function directOrder() {
         var msg = "Halo! Saya mau pesan. Apa menu spesial hari ini?";
         window.location.href = "whatsapp://send?phone=6281241431977&text=" + encodeURIComponent(msg);
@@ -209,16 +205,6 @@
         var shareText = "Halo! Coba lihat menu lezat dari Warung Mena Paser Brasil di sini: " + window.location.href.split('#')[0];
         window.location.href = "whatsapp://send?text=" + encodeURIComponent(shareText);
     }
-
-    document.addEventListener('touchstart', function (event) {
-        if (event.touches.length > 1) {
-            event.preventDefault();
-        }
-    }, { passive: false });
-
-    document.addEventListener('gesturestart', function (event) {
-        event.preventDefault();
-    });
 </script>
 
 </body>
