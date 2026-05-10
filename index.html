@@ -1,36 +1,29 @@
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <title>Kartu Nama Digital Warung Mena Paser Brasil</title>
-
-    <link rel="icon" type="image/png" href="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
-    <link rel="apple-touch-icon" href="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
+    <meta property="og:title" content="Kartu Nama Digital Warung Mena Paser Brasil 🇧🇷🇮🇩">
+    <meta property="og:description" content="Warung Mena Paser Brasil: Klik untuk melihat menu lezat kami!">
+    <meta property="og:image" content="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
 
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
       window.OneSignalDeferred = window.OneSignalDeferred || [];
       OneSignalDeferred.push(async function(OneSignal) {
         await OneSignal.init({
-          appId: "6efcaa8e-d615-45fa-acf3-7617911609a8", // SEU ID REAL
-          notifyButton: {
-            enable: false, // Mantém o visual limpo sem o sino flutuante
-          },
+          appId: "6efcaa8e-d615-45fa-acf3-7617911609a8",
+          // Força a leitura do arquivo JS dentro da pasta no GitHub
+          serviceWorkerPath: 'OneSignalSDKWorker.js',
+          serviceWorkerParam: { scope: './' }
         });
-
-        // Faz o balão de inscrição aparecer após 5 segundos
-        setTimeout(function() {
-            console.log("Chamando o convite de notificação...");
-            OneSignal.Slidedown.promptTrigger();
-        }, 5000); 
+        // Ativa o balão de inscrição
+        OneSignal.Slidedown.promptDefault();
       });
     </script>
-    <meta property="og:title" content="Kartu Nama Digital Warung Mena Paser Brasil 🇧🇷🇮🇩">
-    <meta property="og:description" content="Warung Mena Paser Brasil: Klik untuk melihat menu lezat kami!">
-    <meta property="og:image" content="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
-
     <style>
         :root {
             --primary-color: #e67e22;
@@ -70,9 +63,17 @@
         .item-price { color: var(--primary-color); font-weight: bold; font-size: 15px; text-align: right; }
 
         #scroll-indicator {
-            position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
-            z-index: 99999; display: flex; flex-direction: column; align-items: center;
-            transition: opacity 0.4s ease, transform 0.4s ease; pointer-events: auto; opacity: 1;
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: auto;
+            opacity: 1;
         }
 
         .social-label-alert { 
@@ -108,9 +109,7 @@
         #image-overlay img { max-width: 90%; max-height: 75%; border-radius: 12px; border: 3px solid white; }
         .close-zoom { position: absolute; top: 30px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
 
-        .visit-counter { margin-top: 30px; font-size: 12px; color: #95a5a6; display: flex; flex-direction: column; align-items: center; gap: 5px; }
-        .visit-counter img { border-radius: 4px; opacity: 0.8; }
-        .footer-sales { background: #f8f9fa; padding: 25px; font-size: 13px; color: #7f8c8d; border-top: 1px solid #eee; margin-top: 15px; }
+        .footer-sales { background: #f8f9fa; padding: 25px; font-size: 13px; color: #7f8c8d; border-top: 1px solid #eee; margin-top: 30px; }
     </style>
 </head>
 <body oncontextmenu="return false;">
@@ -127,7 +126,6 @@
 
 <div class="container">
     <img src="https://i.ibb.co.com/YB9XJVNt/Whats-App-Image-2026-05-07-at-09-42-31.jpg" class="banner-img">
-    
     <div class="profile-section">
         <img src="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png" class="profile-img">
     </div>
@@ -154,6 +152,11 @@
             <span class="item-name">Kopi Hitam</span>
             <span class="item-price">Rp 5.000</span>
         </div>
+        <div class="menu-item">
+            <div style="width: 60px;"></div>
+            <span class="item-name">Delivery (Batu Kajang)</span>
+            <span class="item-price" style="color: #2ecc71;">Gratis</span>
+        </div>
     </div>
 
     <div id="social-section" style="padding-top: 10px;"></div>
@@ -165,11 +168,6 @@
         <a href="https://www.tiktok.com/@ningsihnovaes" class="btn btn-tiktok">🎵 TikTok</a>
         <a href="https://maps.google.com/?q=Warung+Mena+Paser+Brasil" class="btn btn-location">📍 Lokasi Warung (GPS)</a>
         <button onclick="directShare()" class="btn btn-share">📲 Bagikan ke Teman</button>
-    </div>
-
-    <div class="visit-counter">
-        <span>Pengunjung kartu nama:</span>
-        <img src="https://counter8.optistats.ovh/private/freecounterstat.php?c=8zll9m9zbe6x1e2y1f21nd6k3q9lql2u" title="free counter" alt="free counter">
     </div>
 
     <div class="footer-sales">
@@ -186,14 +184,18 @@
     function updateArrowVisibility() {
         if (window.scrollY < 20) {
             indicator.style.opacity = "1";
+            indicator.style.pointerEvents = "auto";
             indicator.style.transform = "translateX(-50%) translateY(0)";
         } else {
             indicator.style.opacity = "0";
+            indicator.style.pointerEvents = "none";
             indicator.style.transform = "translateX(-50%) translateY(20px)";
         }
     }
 
     window.addEventListener('scroll', updateArrowVisibility);
+    window.addEventListener('focus', updateArrowVisibility);
+    updateArrowVisibility();
 
     function openZoom(imgSrc) {
         document.getElementById('zoomed-image').src = imgSrc;
