@@ -8,7 +8,25 @@
 
     <link rel="icon" type="image/png" href="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
     <link rel="apple-touch-icon" href="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
-    
+
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "6efcaa8e-d615-45fa-acf3-7617911609a8", // SEU ID REAL
+          notifyButton: {
+            enable: false, // Mantém o visual limpo sem o sino flutuante
+          },
+        });
+
+        // Faz o balão de inscrição aparecer após 5 segundos
+        setTimeout(function() {
+            console.log("Chamando o convite de notificação...");
+            OneSignal.Slidedown.promptTrigger();
+        }, 5000); 
+      });
+    </script>
     <meta property="og:title" content="Kartu Nama Digital Warung Mena Paser Brasil 🇧🇷🇮🇩">
     <meta property="og:description" content="Warung Mena Paser Brasil: Klik untuk melihat menu lezat kami!">
     <meta property="og:image" content="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
@@ -52,17 +70,9 @@
         .item-price { color: var(--primary-color); font-weight: bold; font-size: 15px; text-align: right; }
 
         #scroll-indicator {
-            position: fixed;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 99999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            pointer-events: auto;
-            opacity: 1;
+            position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
+            z-index: 99999; display: flex; flex-direction: column; align-items: center;
+            transition: opacity 0.4s ease, transform 0.4s ease; pointer-events: auto; opacity: 1;
         }
 
         .social-label-alert { 
@@ -111,12 +121,13 @@
 </div>
 
 <div id="image-overlay" onclick="closeZoom()">
-    <span class="close-zoom">&times;</span>
+    <span class="close-zoom">×</span>
     <img id="zoomed-image" src="" alt="Zoom">
 </div>
 
 <div class="container">
     <img src="https://i.ibb.co.com/YB9XJVNt/Whats-App-Image-2026-05-07-at-09-42-31.jpg" class="banner-img">
+    
     <div class="profile-section">
         <img src="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png" class="profile-img">
     </div>
@@ -142,11 +153,6 @@
             <img src="https://i.ibb.co.com/HTgxQHQg/Whats-App-2026-05-09-at-09-15-18.jpg" class="item-img" onclick="openZoom(this.src)">
             <span class="item-name">Kopi Hitam</span>
             <span class="item-price">Rp 5.000</span>
-        </div>
-        <!-- DELIVERY ITEM RECOLOCADO E AJUSTADO -->
-        <div class="menu-item">
-            <span class="item-name">Delivery (Batu Kajang)</span>
-            <span class="item-price" style="color: #2ecc71;">Gratis</span>
         </div>
     </div>
 
@@ -180,18 +186,14 @@
     function updateArrowVisibility() {
         if (window.scrollY < 20) {
             indicator.style.opacity = "1";
-            indicator.style.pointerEvents = "auto";
             indicator.style.transform = "translateX(-50%) translateY(0)";
         } else {
             indicator.style.opacity = "0";
-            indicator.style.pointerEvents = "none";
             indicator.style.transform = "translateX(-50%) translateY(20px)";
         }
     }
 
     window.addEventListener('scroll', updateArrowVisibility);
-    window.addEventListener('focus', updateArrowVisibility);
-    updateArrowVisibility();
 
     function openZoom(imgSrc) {
         document.getElementById('zoomed-image').src = imgSrc;
