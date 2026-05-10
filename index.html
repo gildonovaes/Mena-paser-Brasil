@@ -1,6 +1,4 @@
- 
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -26,11 +24,39 @@
         html, body { scroll-behavior: smooth; touch-action: pan-x pan-y; -webkit-text-size-adjust: 100%; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; display: flex; justify-content: center; overscroll-behavior-y: contain; }
 
-        .container { width: 100%; max-width: 480px; background: white; min-height: 100vh; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: center; position: relative; padding-bottom: 50px; }
+        .container { width: 100%; max-width: 480px; background: white; min-height: 100vh; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: center; position: relative; padding-bottom: 80px; }
         .banner-img { width: 100%; height: 220px; object-fit: cover; }
         .profile-section { margin-top: -60px; position: relative; }
         .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 5px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); object-fit: cover; background-color: white; }
         .store-name { font-size: 26px; font-weight: bold; color: #2c3e50; margin: 10px 0 5px; }
+
+        /* DICA FLUTUANTE */
+        #dica-flutuante {
+            position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 400px; background: white; border-radius: 15px;
+            padding: 12px; display: flex; align-items: center; gap: 12px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.3); z-index: 999999;
+            transition: bottom 0.5s ease-in-out; border-left: 5px solid var(--primary-color);
+        }
+        #dica-flutuante.show { bottom: 20px; }
+
+        /* MODAL DE SAÍDA */
+        #modal-sair {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 1000001; justify-content: center; align-items: center; padding: 20px;
+        }
+        .modal-content { background: white; padding: 25px; border-radius: 25px; max-width: 340px; text-align: center; border: 2px solid var(--primary-color); }
+        .modal-buttons { display: flex; gap: 10px; margin-top: 20px; }
+        .btn-modal { flex: 1; padding: 14px; border-radius: 50px; font-weight: bold; cursor: pointer; border: none; }
+        .btn-sim { background: #eee; color: #333; }
+        .btn-nao { background: var(--primary-color); color: white; }
+
+        /* ANIMAÇÕES */
+        @keyframes bounce { 
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
+            40% {transform: translateY(-12px);} 
+            60% {transform: translateY(-6px);} 
+        }
 
         @keyframes pulse-flame {
             0% { transform: scale(1); box-shadow: 0 0 5px var(--flame-color); }
@@ -40,51 +66,31 @@
 
         .menu-list { padding: 0 20px; text-align: left; margin-bottom: 5px; }
         .menu-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; gap: 12px; min-height: 55px; }
-
-        .item-img {
-            width: 60px; height: 60px; border-radius: 10px; object-fit: cover; cursor: pointer;
-            animation: pulse-flame 2s infinite ease-in-out;
-        }
-
+        .item-img { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; cursor: pointer; animation: pulse-flame 2s infinite ease-in-out; }
         .item-name { font-weight: 600; font-size: 16px; color: #333; flex-grow: 1; }
         .item-price { color: var(--primary-color); font-weight: bold; font-size: 15px; text-align: right; }
 
+        /* SETINHA DE INDICAÇÃO */
         #scroll-indicator {
-            position: fixed;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 99999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            pointer-events: auto;
-            opacity: 1; /* Começa visível pois inicia no topo */
+            position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
+            z-index: 99998; display: flex; flex-direction: column; align-items: center;
+            transition: opacity 0.4s ease, transform 0.4s ease, bottom 0.5s ease;
+            pointer-events: auto; opacity: 1;
         }
-
         .social-label-alert { 
             font-size: 11px; font-weight: bold; color: white; background: var(--primary-color); 
             padding: 4px 12px; border-radius: 20px; text-transform: uppercase; margin-bottom: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
-
         .arrow-circle { 
             width: 55px; height: 55px; background: var(--primary-color); border-radius: 50%; 
             display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; 
             box-shadow: 0 6px 20px rgba(0,0,0,0.4); border: 3px solid white; cursor: pointer;
-            animation: bounce 2s infinite;
+            animation: bounce 2s infinite; /* PULSAÇÃO DA SETINHA ATIVADA AQUI */
         }
-
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-12px);} 60% {transform: translateY(-6px);} }
 
         .btn-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 0 30px; margin-top: 20px; }
-        .btn { 
-            display: flex; align-items: center; justify-content: center; width: 100%; max-width: 320px; padding: 16px; 
-            border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 17px; border: none; cursor: pointer; color: white; box-sizing: border-box;
-            animation: pulse-flame 2.5s infinite ease-in-out;
-        }
-
+        .btn { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 320px; padding: 16px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 17px; border: none; cursor: pointer; color: white; box-sizing: border-box; animation: pulse-flame 2.5s infinite ease-in-out; }
         .btn-order { background-color: var(--whatsapp-color); --flame-color: rgba(37, 211, 102, 0.5); }
         .btn-instagram { background-color: var(--instagram-color); --flame-color: rgba(225, 48, 108, 0.5); }
         .btn-facebook { background-color: var(--facebook-color); --flame-color: rgba(24, 119, 242, 0.5); }
@@ -95,11 +101,29 @@
         #image-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000000; justify-content: center; align-items: center; }
         #image-overlay img { max-width: 90%; max-height: 75%; border-radius: 12px; border: 3px solid white; }
         .close-zoom { position: absolute; top: 30px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
-
         .footer-sales { background: #f8f9fa; padding: 25px; font-size: 13px; color: #7f8c8d; border-top: 1px solid #eee; margin-top: 30px; }
     </style>
 </head>
 <body oncontextmenu="return false;">
+
+<div id="dica-flutuante">
+    <img src="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png" width="40">
+    <div style="text-align: left;">
+        <strong style="display: block; font-size: 11px; color: var(--primary-color);">Info Warung Mena:</strong>
+        <span id="texto-dica" style="font-size: 13px; color: #333;">Pesan sekarang lewat WhatsApp!</span>
+    </div>
+</div>
+
+<div id="modal-sair">
+    <div class="modal-content">
+        <h2 style="margin-top:0">Anda yakin ingin keluar?</h2>
+        <p>Jangan lupa tambahkan ikon kami ke layar utama Anda untuk akses cepat!</p>
+        <div class="modal-buttons">
+            <button class="btn-modal btn-sim" onclick="sairRealmente()">Ya, Keluar</button>
+            <button class="btn-modal btn-nao" onclick="fecharModal()">Tidak, Tetap di Sini</button>
+        </div>
+    </div>
+</div>
 
 <div id="scroll-indicator">
     <span class="social-label-alert">Lihat Menu & Sosial</span>
@@ -107,7 +131,7 @@
 </div>
 
 <div id="image-overlay" onclick="closeZoom()">
-    <span class="close-zoom">&times;</span>
+    <span class="close-zoom">×</span>
     <img id="zoomed-image" src="" alt="Zoom">
 </div>
 
@@ -139,9 +163,8 @@
             <span class="item-name">Kopi Hitam</span>
             <span class="item-price">Rp 5.000</span>
         </div>
-        <div class="menu-item">
-            <div style="width: 60px;"></div>
-            <span class="item-name">Delivery (Batu Kajang)</span>
+        <div class="menu-item" style="justify-content: space-between;">
+            <span class="item-name" style="flex-grow: 0;">Delivery (Batu Kajang)</span>
             <span class="item-price" style="color: #2ecc71;">Gratis</span>
         </div>
     </div>
@@ -166,47 +189,90 @@
 <script src="https://pl29368197.profitablecpmratenetwork.com/76/50/66/7650664099af8bf18005430efb542dcb.js"></script>
 
 <script>
-    const indicator = document.getElementById('scroll-indicator');
+    const dicas = [
+        "Pesan sekarang melalui WhatsApp!",
+        "Gratis ongkir untuk wilayah Batu Kajang!",
+        "Sudah coba Gado-gado kami hari ini?",
+        "Simpan situs ini di layar utama Anda!",
+        "Ikuti kami di Instagram untuk promo!"
+    ];
 
-    function updateArrowVisibility() {
-        // Se a rolagem for quase zero (topo da página)
-        if (window.scrollY < 20) {
-            indicator.style.opacity = "1";
-            indicator.style.pointerEvents = "auto";
-            indicator.style.transform = "translateX(-50%) translateY(0)";
-        } else {
-            // Esconde em qualquer outra posição
-            indicator.style.opacity = "0";
-            indicator.style.pointerEvents = "none";
-            indicator.style.transform = "translateX(-50%) translateY(20px)";
-        }
+    function mostrarDica() {
+        const box = document.getElementById('dica-flutuante');
+        const texto = document.getElementById('texto-dica');
+        const indicator = document.getElementById('scroll-indicator');
+        texto.innerText = dicas[Math.floor(Math.random() * dicas.length)];
+        box.classList.add('show');
+        indicator.style.bottom = "120px";
+        setTimeout(() => { 
+            box.classList.remove('show');
+            indicator.style.bottom = "90px";
+        }, 6000);
+    }
+    setTimeout(mostrarDica, 2000); 
+    setInterval(mostrarDica, 15000); 
+
+    let interacted = false;
+    document.addEventListener('touchstart', () => interacted = true);
+    document.addEventListener('mousedown', () => interacted = true);
+    document.addEventListener('scroll', () => interacted = true);
+
+    function initExitModal() {
+        window.history.pushState({page: 1}, "", "");
+        window.history.pushState({page: 2}, "", "");
+        
+        window.onpopstate = function(event) {
+            document.getElementById('modal-sair').style.display = 'flex';
+            window.history.pushState({page: 2}, "", "");
+        };
+
+        document.addEventListener("mouseleave", function(e) {
+            if (e.clientY < 0 && interacted) {
+                document.getElementById('modal-sair').style.display = 'flex';
+            }
+        });
+    }
+    
+    setTimeout(initExitModal, 500);
+
+    function fecharModal() {
+        document.getElementById('modal-sair').style.display = 'none';
     }
 
-    // Monitora a rolagem
-    window.addEventListener('scroll', updateArrowVisibility);
+    // FUNÇÃO DE SAÍDA REFORÇADA
+    function sairRealmente() {
+        window.onpopstate = null; // Remove a trava
+        document.body.innerHTML = "<div style='display:flex;justify-content:center;align-items:center;height:100vh;font-family:sans-serif;'>Sair...</div>";
+        
+        // Tenta fechar a aba
+        window.close();
+        
+        // Se não fechar (comum em navegadores), redireciona para o Google
+        setTimeout(() => {
+            window.location.replace("https://www.google.com");
+        }, 300);
+    }
 
-    // Garante que ao voltar de um link (foco da aba), a seta obedeça a regra
-    window.addEventListener('focus', updateArrowVisibility);
-    
-    // Roda uma vez ao carregar para garantir o estado inicial
-    updateArrowVisibility();
+    const indicator = document.getElementById('scroll-indicator');
+    function updateArrowVisibility() {
+        indicator.style.opacity = (window.scrollY < 20) ? "1" : "0";
+        indicator.style.pointerEvents = (window.scrollY < 20) ? "auto" : "none";
+    }
+    window.addEventListener('scroll', updateArrowVisibility);
 
     function openZoom(imgSrc) {
         document.getElementById('zoomed-image').src = imgSrc;
         document.getElementById('image-overlay').style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
-
     function closeZoom() {
         document.getElementById('image-overlay').style.display = 'none';
         document.body.style.overflow = 'auto';
     }
-
     function directOrder() {
         var msg = "Halo! Saya mau pesan. Apa menu spesial hari ini?";
         window.location.href = "whatsapp://send?phone=6281241431977&text=" + encodeURIComponent(msg);
     }
-
     function directShare() {
         var shareText = "Halo! Coba lihat menu lezat dari Warung Mena Paser Brasil di sini: " + window.location.href.split('#')[0];
         window.location.href = "whatsapp://send?text=" + encodeURIComponent(shareText);
