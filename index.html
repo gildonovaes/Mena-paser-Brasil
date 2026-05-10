@@ -1,4 +1,6 @@
- <!DOCTYPE html>
+ 
+
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -8,13 +10,6 @@
     <meta property="og:title" content="Kartu Nama Digital Warung Mena Paser Brasil 🇧🇷🇮🇩">
     <meta property="og:description" content="Warung Mena Paser Brasil: Klik untuk melihat menu lezat kami!">
     <meta property="og:image" content="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
-
-    <!-- Webpushr SDK - Início -->
-    <script>(function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') return;w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(arguments)};var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1;js.src = "https://cdn.webpushr.com/app.min.js";
-    fjs.parentNode.appendChild(js);}(window,document, 'script', 'webpushr-jssdk'));
-    webpushr('setup',{'key':'BH7f6zchy9mqEGjRJ96IeCMnVEs0B1eSxsfwgimsy6wi7hXkKwlmiNvpnDDjMPjAGDCGL5HJ1f8H549cw030mGU' });
-    </script>
-    <!-- Webpushr SDK - Fim -->
 
     <style>
         :root {
@@ -55,9 +50,17 @@
         .item-price { color: var(--primary-color); font-weight: bold; font-size: 15px; text-align: right; }
 
         #scroll-indicator {
-            position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
-            z-index: 99999; display: flex; flex-direction: column; align-items: center;
-            transition: opacity 0.4s ease, transform 0.4s ease; pointer-events: auto; opacity: 1;
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: auto;
+            opacity: 1; /* Começa visível pois inicia no topo */
         }
 
         .social-label-alert { 
@@ -160,23 +163,32 @@
     </div>
 </div>
 
+<script src="https://pl29368197.profitablecpmratenetwork.com/76/50/66/7650664099af8bf18005430efb542dcb.js"></script>
+
 <script>
     const indicator = document.getElementById('scroll-indicator');
 
     function updateArrowVisibility() {
+        // Se a rolagem for quase zero (topo da página)
         if (window.scrollY < 20) {
             indicator.style.opacity = "1";
             indicator.style.pointerEvents = "auto";
             indicator.style.transform = "translateX(-50%) translateY(0)";
         } else {
+            // Esconde em qualquer outra posição
             indicator.style.opacity = "0";
             indicator.style.pointerEvents = "none";
             indicator.style.transform = "translateX(-50%) translateY(20px)";
         }
     }
 
+    // Monitora a rolagem
     window.addEventListener('scroll', updateArrowVisibility);
+
+    // Garante que ao voltar de um link (foco da aba), a seta obedeça a regra
     window.addEventListener('focus', updateArrowVisibility);
+    
+    // Roda uma vez ao carregar para garantir o estado inicial
     updateArrowVisibility();
 
     function openZoom(imgSrc) {
