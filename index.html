@@ -207,7 +207,6 @@
             scrollStep = 2;
         }
 
-        // Esconder apenas quando encostar REALMENTE no fim
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
             indicator.style.opacity = "0";
             setTimeout(() => { if(window.scrollY > 200) indicator.style.visibility = "hidden"; }, 400);
@@ -224,7 +223,6 @@
         document.body.style.overflow = 'auto';
     }
 
-    // TEXTOS LEGAIS MELHORADOS PARA INFOLINKS
     function openPrivacy() {
         const win = window.open("", "_blank");
         win.document.write(`
@@ -257,6 +255,9 @@
     function directOrder() { window.location.href = "whatsapp://send?phone=6281241431977&text=Halo!"; }
     function directShare() { window.location.href = "whatsapp://send?text=Lihat menu Warung Mena: " + window.location.href; }
 </script>
+
+<script type="text/javascript"> var infolinks_pid = 3445428; var infolinks_wsid = 0; </script> 
+<script type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script>
 
 </body>
 </html>
