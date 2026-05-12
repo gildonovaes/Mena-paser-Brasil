@@ -1,5 +1,4 @@
- 
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -107,7 +106,7 @@
 
 <div id="scroll-indicator">
     <span class="social-label-alert" id="scroll-text">Ikuti Sosial Media</span>
-    <div class="arrow-circle" onclick="smartScroll()">↓</div>
+    <div class="arrow-circle" id="arrow-btn" onclick="smartScroll()">↓</div>
 </div>
 
 <div id="image-overlay">
@@ -195,30 +194,31 @@
 
     let nextStep = 0;
     function smartScroll() {
-        const targets = ['social-target', 'seo-target', 'footer-target'];
-        const targetEl = document.getElementById(targets[nextStep]);
-        if (targetEl) {
-            targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (nextStep === 3) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            nextStep = 0;
+        } else {
+            const targets = ['social-target', 'seo-target', 'footer-target'];
+            const targetEl = document.getElementById(targets[nextStep]);
+            if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         }
     }
 
     window.addEventListener('scroll', () => {
-        const indicator = document.getElementById('scroll-indicator');
         const text = document.getElementById('scroll-text');
-        
+        const arrow = document.getElementById('arrow-btn');
         const socialPos = document.getElementById('social-target').getBoundingClientRect().top;
         const seoPos = document.getElementById('seo-target').getBoundingClientRect().top;
-        const footerPos = document.getElementById('footer-target').getBoundingClientRect().top;
-
-        const isAtBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 80;
+        const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 60);
 
         if (isAtBottom) {
-            indicator.style.opacity = "0";
-            indicator.style.visibility = "hidden";
+            text.innerText = "Kembali ke Atas"; // TRADUZIDO PARA INDONÉSIO
+            arrow.innerText = "↑";
+            nextStep = 3;
         } else {
-            indicator.style.opacity = "1";
-            indicator.style.visibility = "visible";
-
+            arrow.innerText = "↓";
             if (socialPos > 150) {
                 text.innerText = "Ikuti Sosial Media";
                 nextStep = 0;
@@ -271,7 +271,7 @@
         window.location.href = "whatsapp://send?phone=6281241431977&text=" + text; 
     }
     function directShare() { 
-        const text = encodeURIComponent("Halo teman-teman! Lihat menu lezat dari Warung Mena Paser Brasil ini 🥗 Gado-gado autentik di Batu Kajang: ");
+        const text = encodeURIComponent("Halo teman-teman! Lihat menu lezat dari Warung Mena Paser Brasil ini 🥗");
         window.location.href = "whatsapp://send?text=" + text + window.location.href; 
     }
 </script>
