@@ -1,4 +1,4 @@
-
+ 
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <title>Warung Mena Paser Brasil - Kuliner & Tradisi</title>
-    <meta name="description" content="Warung Mena Paser Brasil: Nikmati Gado-gado autentik dengan bahan berkualitas dan layanan terbaik di Batu Kajang.">
+    <meta name="description" content="Warung Mena Paser Brasil: Nikmati Gado-gado autentik dengan bahan berkualitas e layanan terbaik di Batu Kajang.">
     
     <style>
         :root {
@@ -36,7 +36,7 @@
         .item-name { font-weight: 600; font-size: 16px; color: #333; flex-grow: 1; }
         .item-price { color: var(--primary-color); font-weight: bold; font-size: 15px; text-align: right; }
 
-        /* BOTOES ALINHADOS */
+        /* BOTOES */
         .btn-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 20px 30px; }
         .btn-social { 
             display: flex !important; align-items: center !important; justify-content: center !important; 
@@ -53,11 +53,24 @@
         .btn-location { background-color: var(--location-color); --flame-color: rgba(235, 77, 75, 0.4); }
         .btn-share { background-color: var(--share-color); --flame-color: rgba(52, 152, 219, 0.4); }
 
-        /* SETA INTELIGENTE (ATÉ O FINAL) */
+        /* SOCIAL BAR DICAS INDONESIA */
+        #social-bar-tips {
+            position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 400px; background: white; border-radius: 15px;
+            padding: 12px 20px; box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+            display: flex; align-items: center; gap: 12px; z-index: 99999;
+            transition: bottom 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            border-left: 6px solid var(--primary-color);
+        }
+        #social-bar-tips.show { bottom: 20px; }
+        .tip-icon { font-size: 22px; }
+        .tip-text { font-size: 14px; font-weight: bold; color: #333; text-align: left; }
+
+        /* SETA INTELIGENTE */
         #scroll-indicator {
             position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%);
             z-index: 99998; display: flex; flex-direction: column; align-items: center;
-            transition: all 0.4s ease; opacity: 1;
+            transition: opacity 0.4s ease, visibility 0.4s ease; opacity: 1;
         }
         .social-label-alert { 
             font-size: 11px; font-weight: bold; color: white; background: var(--primary-color); 
@@ -71,20 +84,14 @@
             animation: bounce 2s infinite;
         }
 
+        /* ZOOM */
+        #image-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000000; justify-content: center; align-items: center; }
+        #image-overlay img { max-width: 90%; max-height: 75%; border-radius: 12px; border: 3px solid white; }
+        .close-btn { position: absolute; top: 20px; right: 20px; width: 45px; height: 45px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; border: 2px solid white; cursor: pointer; }
+
         /* SEO CONTENT */
         .seo-content { padding: 25px; text-align: justify; line-height: 1.8; color: #666; font-size: 14px; background: #fafafa; margin: 20px; border-radius: 15px; border: 1px solid #eee; }
         .seo-content h2 { color: var(--primary-color); font-size: 18px; margin-top: 15px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
-
-        /* ZOOM E BOTÃO X */
-        #image-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000000; justify-content: center; align-items: center; }
-        #image-overlay img { max-width: 90%; max-height: 75%; border-radius: 12px; border: 3px solid white; }
-        .close-btn { 
-            position: absolute; top: 20px; right: 20px; width: 45px; height: 45px; 
-            background: var(--primary-color); color: white; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; 
-            font-size: 24px; font-weight: bold; border: 2px solid white; cursor: pointer; 
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
-        }
 
         .footer-sales { background: #f8f9fa; padding: 25px; font-size: 13px; color: #7f8c8d; border-top: 1px solid #eee; margin-top: 10px; }
         .footer-links a { color: var(--primary-color); text-decoration: none; font-weight: bold; cursor: pointer; }
@@ -94,6 +101,11 @@
     </style>
 </head>
 <body>
+
+<div id="social-bar-tips">
+    <div class="tip-icon">💡</div>
+    <div class="tip-text" id="tip-msg">Sudah makan Gado-gado hari ini? 🥗</div>
+</div>
 
 <div id="scroll-indicator">
     <span class="social-label-alert" id="scroll-text">Ikuti Sosial Media</span>
@@ -151,10 +163,8 @@
     <div class="seo-content" id="seo-target">
         <h2>Kelezatan Autentik Warung Mena di Batu Kajang</h2>
         <p><strong>Warung Mena Paser Brasil</strong> telah menjadi ikon kuliner sehat di wilayah Batu Kajang. Kami berkomitmen untuk menyajikan hidangan Gado-gado terbaik yang dibuat dengan bumbu kacang rahasia e sayuran organik pilihan.</p>
-        
         <h2>Mengapa Memilih Hidangan Kami?</h2>
-        <p>Kesehatan pelanggan adalah prioritas utama kami. Di Warung Mena, kami tidak hanya menjual makanan, tetapi kami menawarkan gaya hidup sehat. Semua bahan baku kami dipasok setiap hari untuk menjamin kesegaran maksimal.</p>
-        
+        <p>Kesehatan pelanggan adalah prioritas utama kami. Di Warung Mena, kami não apenas vendemos comida, oferecemos um estilo de vida saudável. Semua bahan baku kami dipasok setiap hari untuk menjamin kesegaran maksimal.</p>
         <h2>Kemudahan Pemesanan Digital</h2>
         <p>Di era modern ini, kami menghadirkan layanan digital melalui WhatsApp untuk memudahkan pesanan Anda. Kami juga menyediakan layanan pengiriman gratis ke seluruh area Batu Kajang.</p>
     </div>
@@ -170,20 +180,32 @@
 </div>
 
 <script>
-    let scrollStep = 0;
+    // SOCIAL BAR DICAS (TRADUZIDO PARA INDONÉSIO)
+    const messages = [
+        "Sudah makan Gado-gado hari ini? 🥗",
+        "Pesan sekarang via WhatsApp! 🛒",
+        "Gratis ongkir wilayah Batu Kajang! 🚚",
+        "Coba Rujak segar kami hari ini! 🍎",
+        "Lihat promo menarik di Instagram! 📸"
+    ];
+    let msgIdx = 0;
+    const bar = document.getElementById('social-bar-tips');
+    const msg = document.getElementById('tip-msg');
 
+    function showTip() {
+        msg.innerText = messages[msgIdx];
+        bar.classList.add('show');
+        msgIdx = (msgIdx + 1) % messages.length;
+        setTimeout(() => bar.classList.remove('show'), 4000);
+    }
+    setInterval(showTip, 8000);
+    setTimeout(showTip, 2000);
+
+    // SCROLL E SETA INTELIGENTE
+    let scrollStep = 0;
     function smartScroll() {
-        const social = document.getElementById('social-target');
-        const seo = document.getElementById('seo-target');
-        const footer = document.getElementById('footer-target');
-        
-        if (scrollStep === 0) {
-            social.scrollIntoView({ behavior: 'smooth' });
-        } else if (scrollStep === 1) {
-            seo.scrollIntoView({ behavior: 'smooth' });
-        } else if (scrollStep === 2) {
-            footer.scrollIntoView({ behavior: 'smooth' });
-        }
+        const targets = ['social-target', 'seo-target', 'footer-target'];
+        document.getElementById(targets[scrollStep]).scrollIntoView({ behavior: 'smooth' });
     }
 
     window.addEventListener('scroll', () => {
@@ -192,68 +214,57 @@
         const socialPos = document.getElementById('social-target').getBoundingClientRect().top;
         const seoPos = document.getElementById('seo-target').getBoundingClientRect().top;
         
-        if (window.scrollY < 100) {
-            indicator.style.opacity = "1";
-            indicator.style.visibility = "visible";
-            text.innerText = "Ikuti Sosial Media";
-            scrollStep = 0;
-        } 
-        else if (socialPos < (window.innerHeight / 2) && seoPos > (window.innerHeight / 2)) {
-            text.innerText = "Informasi Lanjut";
-            scrollStep = 1;
-        }
-        else if (seoPos < (window.innerHeight / 2)) {
-            text.innerText = "Hubungi Kami";
-            scrollStep = 2;
-        }
+        if (window.scrollY < 100) { text.innerText = "Ikuti Sosial Media"; scrollStep = 0; }
+        else if (socialPos < (window.innerHeight / 2) && seoPos > (window.innerHeight / 2)) { text.innerText = "Informasi Lanjut"; scrollStep = 1; }
+        else if (seoPos < (window.innerHeight / 2)) { text.innerText = "Hubungi Kami"; scrollStep = 2; }
 
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
-            indicator.style.opacity = "0";
-            setTimeout(() => { if(window.scrollY > 200) indicator.style.visibility = "hidden"; }, 400);
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+            indicator.style.opacity = "0"; indicator.style.visibility = "hidden";
+        } else {
+            indicator.style.opacity = "1"; indicator.style.visibility = "visible";
         }
     });
 
-    function openZoom(src) {
-        document.getElementById('zoomed-image').src = src;
-        document.getElementById('image-overlay').style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-    function closeZoom() {
-        document.getElementById('image-overlay').style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-
+    function openZoom(src) { document.getElementById('zoomed-image').src = src; document.getElementById('image-overlay').style.display = 'flex'; }
+    function closeZoom() { document.getElementById('image-overlay').style.display = 'none'; }
+    
+    // TERMOS JURÍDICOS AMPLIADOS
     function openPrivacy() {
         const win = window.open("", "_blank");
-        win.document.write(`
-            <div style="font-family:sans-serif; padding:40px; max-width:800px; margin:auto; line-height:1.6;">
-                <h1>Kebijakan Privasi - Warung Mena</h1>
-                <p>Terakhir diperbarui: Mei 2026</p>
-                <p>Kami sangat menghargai privasi pengunjung kami. Kebijakan Privasi ini menguraikan jenis informasi pribadi yang diterima dan dikumpulkan oleh situs kami dan bagaimana informasi tersebut digunakan.</p>
-                <h3>Informasi yang Kami Kumpulkan</h3>
-                <p>Kami hanya mengumpulkan informasi yang Anda berikan secara sukarela saat melakukan pemesanan melalui WhatsApp, seperti nama dan alamat pengiriman Anda.</p>
-                <h3>Keamanan Data</h3>
-                <p>Kami berkomitmen untuk memastikan bahwa informasi Anda aman dan tidak akan dibagikan kepada pihak ketiga tanpa izin Anda.</p>
-            </div>
-        `);
+        win.document.write(`<div style="font-family:sans-serif; padding:40px; max-width:800px; margin:auto; line-height:1.6;">
+            <h1>Kebijakan Privasi - Warung Mena</h1>
+            <p>Di Warung Mena Paser Brasil, kami berkomitmen untuk melindungi privasi pelanggan kami. Kebijakan ini menjelaskan bagaimana kami mengelola informasi Anda:</p>
+            <ul>
+                <li><b>Data Pesanan:</b> Kami mengumpulkan informasi seperti nama e nomor telepon hanya untuk keperluan pengiriman pesanan melalui WhatsApp.</li>
+                <li><b>Keamanan:</b> Kami tidak membagikan data pribadi Anda kepada pihak ketiga untuk tujuan pemasaran tanpa izin Anda.</li>
+                <li><b>Cookie:</b> Situs ini mungkin menggunakan cookie dasar untuk meningkatkan pengalaman navigasi Anda.</li>
+            </ul>
+            <p>Dengan menggunakan layanan kami, Anda menyetujui praktik yang dijelaskan dalam kebijakan ini.</p>
+        </div>`);
     }
-
     function openTerms() {
         const win = window.open("", "_blank");
-        win.document.write(`
-            <div style="font-family:sans-serif; padding:40px; max-width:800px; margin:auto; line-height:1.6;">
-                <h1>Syarat dan Ketentuan Layanan</h1>
-                <p>Selamat datang di Warung Mena Paser Brasil. Dengan mengakses situs ini, kami menganggap Anda menerima syarat dan ketentuan ini.</p>
-                <h3>Layanan Pengiriman</h3>
-                <p>Layanan pengiriman gratis hanya berlaku untuk wilayah Batu Kajang. Waktu pengiriman dapat bervariasi tergantung pada beban kerja kurir kami.</p>
-                <h3>Produk dan Harga</h3>
-                <p>Kami berhak mengubah harga produk kami tanpa pemberitahuan terlebih dahulu. Kami menjamin bahwa semua produk yang disajikan segar dan higienis.</p>
-            </div>
-        `);
+        win.document.write(`<div style="font-family:sans-serif; padding:40px; max-width:800px; margin:auto; line-height:1.6;">
+            <h1>Syarat dan Ketentuan Layanan</h1>
+            <p>Selamat datang di situs kartu digital Warung Mena. Harap baca ketentuan berikut dengan seksama:</p>
+            <ol>
+                <li><b>Layanan:</b> Warung Mena menyediakan layanan pemesanan makanan melalui platform pihak ketiga (WhatsApp).</li>
+                <li><b>Harga:</b> Semua harga yang tercantum dapat berubah sewaktu-waktu sesuai dengan ketersediaan bahan baku.</li>
+                <li><b>Pengiriman:</b> Gratis ongkir berlaku khusus untuk wilayah Batu Kajang sesuai dengan syarat yang ditentukan oleh admin.</li>
+                <li><b>Tanggung Jawab:</b> Kami berusaha memberikan informasi yang paling akurat, namun kami tidak bertanggung jawab atas kesalahan teknis pada koneksi internet pengguna.</li>
+            </ol>
+        </div>`);
     }
 
-    function directOrder() { window.location.href = "whatsapp://send?phone=6281241431977&text=Halo!"; }
-    function directShare() { window.location.href = "whatsapp://send?text=Lihat menu Warung Mena: " + window.location.href; }
+    // WHATSAPP E SHARE EM INDONÉSIO
+    function directOrder() { 
+        const text = encodeURIComponent("Halo Warung Mena! 🥗 Saya melihat menu Anda dan ingin memesan sekarang. Apakah bisa dibantu? 🛒");
+        window.location.href = "whatsapp://send?phone=6281241431977&text=" + text; 
+    }
+    function directShare() { 
+        const text = encodeURIComponent("Halo teman-teman! Lihat menu lezat dari Warung Mena Paser Brasil ini 🥗 Gado-gado autentik di Batu Kajang: ");
+        window.location.href = "whatsapp://send?text=" + text + window.location.href; 
+    }
 </script>
 
 <script type="text/javascript"> var infolinks_pid = 3445428; var infolinks_wsid = 0; </script> 
