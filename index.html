@@ -1,4 +1,6 @@
- <!DOCTYPE html>
+
+
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -63,13 +65,10 @@
             border-left: 6px solid var(--primary-color);
         }
         #social-bar-tips.show { bottom: 20px; }
-        .tip-icon { font-size: 22px; }
-        .tip-text { font-size: 14px; font-weight: bold; color: #333; text-align: left; }
 
         #scroll-indicator {
             position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%);
             z-index: 99998; display: flex; flex-direction: column; align-items: center;
-            transition: opacity 0.3s ease, visibility 0.3s ease; opacity: 1;
         }
         .social-label-alert { 
             font-size: 11px; font-weight: bold; color: white; background: var(--primary-color); 
@@ -159,11 +158,11 @@
 
     <div class="seo-content" id="seo-target">
         <h2>Kelezatan Autentik Warung Mena di Batu Kajang</h2>
-        <p><strong>Warung Mena Paser Brasil</strong> telah menjadi ikon kuliner sehat di wilayah Batu Kajang. Kami berkomitmen para pelanggan untuk menyajikan hidangan Gado-gado terbaik dengan cita rasa yang tetap terjaga sejak hari pertama kami melayani masyarakat.</p>
+        <p><strong>Warung Mena Paser Brasil</strong> telah menjadi ikon kuliner sehat di wilayah Batu Kajang. Kami berkomitmen para pelanggan untuk menyajikan hidangan Gado-gado terbaik dengan cita rasa yang tetap terjaga sejak hari primeira kami melayani masyarakat.</p>
         <h2>Mengapa Memilih Hidangan Kami?</h2>
         <p>Kesehatan e kepuasan pelanggan adalah prioritas utama kami. Semua bahan baku sayuran, kacang, e bumbu yang kami gunakan dipasok setiap hari untuk menjamin kesegaran maksimal e rasa yang tiada duanya di setiap porsinya.</p>
         <h2>Kemudahan Pemesanan Digital</h2>
-        <p>Di era modern ini, kami menghadirkan layanan digital melalui WhatsApp untuk memudahkan pesanan Anda. Cukup klik tombol di atas e hidangan favorit Anda akan segera kami proses untuk dinikmati bersama keluarga di rumah.</p>
+        <p>Di era modern ini, kami menghadirkan layanan digital melalui WhatsApp para memudahkan pesanan Anda. Cukup klik tombol di atas e hidangan favorit Anda akan segera kami proses untuk dinikmati bersama keluarga di rumah.</p>
     </div>
 
     <div class="footer-sales" id="footer-target">
@@ -192,42 +191,46 @@
     setInterval(showTip, 8000);
     setTimeout(showTip, 2000);
 
-    let nextStep = 0;
+    // FUNÇÃO DA SETA - NOVA LÓGICA DE COORDENADAS FIXAS
     function smartScroll() {
-        if (nextStep === 3) {
+        const social = document.getElementById('social-target');
+        const seo = document.getElementById('seo-target');
+        const footer = document.getElementById('footer-target');
+        
+        const socialPos = social.getBoundingClientRect().top + window.scrollY - 100;
+        const seoPos = seo.getBoundingClientRect().top + window.scrollY - 100;
+        const footerPos = footer.getBoundingClientRect().top + window.scrollY - 100;
+        const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 80);
+
+        if (isAtBottom) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            nextStep = 0;
+        } else if (window.scrollY < (socialPos - 50)) {
+            window.scrollTo({ top: socialPos, behavior: 'smooth' });
+        } else if (window.scrollY < (seoPos - 50)) {
+            window.scrollTo({ top: seoPos, behavior: 'smooth' });
         } else {
-            const targets = ['social-target', 'seo-target', 'footer-target'];
-            const targetEl = document.getElementById(targets[nextStep]);
-            if (targetEl) {
-                targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+            window.scrollTo({ top: footerPos, behavior: 'smooth' });
         }
     }
 
     window.addEventListener('scroll', () => {
         const text = document.getElementById('scroll-text');
         const arrow = document.getElementById('arrow-btn');
-        const socialPos = document.getElementById('social-target').getBoundingClientRect().top;
-        const seoPos = document.getElementById('seo-target').getBoundingClientRect().top;
-        const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 60);
+        const social = document.getElementById('social-target').getBoundingClientRect();
+        const seo = document.getElementById('seo-target').getBoundingClientRect();
+        const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 100);
 
         if (isAtBottom) {
-            text.innerText = "Kembali ke Atas"; // TRADUZIDO PARA INDONÉSIO
+            text.innerText = "Kembali ke Atas";
             arrow.innerText = "↑";
-            nextStep = 3;
         } else {
             arrow.innerText = "↓";
-            if (socialPos > 150) {
+            if (social.top > 150) {
                 text.innerText = "Ikuti Sosial Media";
-                nextStep = 0;
-            } else if (seoPos > 150) {
+            } else if (seo.top > 150) {
                 text.innerText = "Informasi Lanjut";
-                nextStep = 1;
             } else {
                 text.innerText = "Hubungi Kami";
-                nextStep = 2;
             }
         }
     });
@@ -239,11 +242,11 @@
         const win = window.open("", "_blank");
         win.document.write(`<div style="font-family:sans-serif; padding:40px; max-width:800px; margin:auto; line-height:1.6;">
             <h1>Kebijakan Privasi - Warung Mena Paser Brasil</h1>
-            <p>Di Warung Mena, privasi Anda adalah prioritas kami. Dokumen ini merinci jenis informasi pribadi yang diterima e dikumpulkan e bagaimana informasi tersebut digunakan.</p>
+            <p>Di Warung Mena, privasi Anda adalah prioritas kami. Dokumen ini merinci jenis informasi pribadi yang diterima dan dikumpulkan serta bagaimana informasi tersebut digunakan.</p>
             <h3>1. Pengumpulan Data</h3>
-            <p>Kami hanya mengumpulkan data seperti nama e nomor telepon yang Anda berikan secara sukarela saat melakukan pemesanan melalui WhatsApp untuk memastikan layanan pengiriman yang akurat.</p>
+            <p>Kami hanya mengumpulkan data seperti nama dan nomor telepon yang Anda berikan secara sukarela saat melakukan pemesanan melalui WhatsApp untuk memastikan layanan pengiriman yang akurat.</p>
             <h3>2. Penggunaan Informasi</h3>
-            <p>Informasi Anda digunakan untuk memproses pesanan, memberikan konfirmasi, e meningkatkan pengalaman layanan pelanggan kami.</p>
+            <p>Informasi Anda digunakan untuk memproses pesanan, memberikan konfirmasi, dan meningkatkan pengalaman layanan pelanggan kami.</p>
             <h3>3. Perlindungan Data</h3>
             <p>Kami menjamin bahwa data pribadi Anda tidak akan pernah dijual, disewakan, atau dibagikan kepada pihak ketiga untuk tujuan pemasaran tanpa persetujuan eksplisit dari Anda.</p>
             <p><i>Terakhir diperbarui: Mei 2026</i></p>
@@ -254,7 +257,7 @@
         const win = window.open("", "_blank");
         win.document.write(`<div style="font-family:sans-serif; padding:40px; max-width:800px; margin:auto; line-height:1.6;">
             <h1>Syarat dan Ketentuan Layanan</h1>
-            <p>Selamat datang di Warung Mena Paser Brasil. Dengan mengakses situs ini, Anda setuju untuk mematuhi syarat e ketentuan berikut:</p>
+            <p>Selamat datang di Warung Mena Paser Brasil. Dengan mengakses situs ini, Anda setuju untuk mematuhi syarat dan ketentuan berikut:</p>
             <h3>1. Layanan Pemesanan</h3>
             <p>Semua pesanan diproses melalui platform WhatsApp. Ketersediaan menu dapat berubah sewaktu-waktu tergantung pada stok bahan baku segar harian kami.</p>
             <h3>2. Harga dan Pembayaran</h3>
