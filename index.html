@@ -1,12 +1,22 @@
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
+    <!-- CONFIGURAÇÃO DO BALÃO DE PRÉ-VISUALIZAÇÃO (WHATSAPP) -->
     <title>Kartu Nama - Warung Mena Paser Brasil</title>
+    <meta name="description" content="Nikmati Gado-gado autentik dengan bahan berkualitas e layanan terbaik di gildonovaes.github.io">
     
-    <!-- ÍCONE PARA TELA INICIAL (CELULARES) -->
+    <!-- Meta tags para o balão do WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Kartu Nama - Warung Mena Paser Brasil">
+    <meta property="og:description" content="Nikmati Gado-gado autentik dengan bahan berkualitas e layanan terbaik di gildonovaes.github.io">
+    <meta property="og:image" content="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
+    <meta property="og:url" content="https://gildonovaes.github.io">
+
+    <!-- ÍCONE PARA TELA INICIAL -->
     <link rel="icon" type="image/png" href="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
     <link rel="apple-touch-icon" href="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
 
@@ -32,45 +42,27 @@
         .banner-img { width: 100%; height: 220px; object-fit: cover; }
         .profile-section { margin-top: -60px; position: relative; }
         .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 5px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); object-fit: cover; background-color: white; }
-        .store-name { font-size: 26px; font-weight: bold; color: #2c3e50; margin: 10px 0 5px; }
+        
+        .store-name { font-size: 26px; font-weight: bold; color: #2c3e50; margin: 10px 0 30px; }
+        .store-desc { display: none; } /* Removido da visualização da página */
 
-        /* MENU LIST COM IMAGENS PULSANTES E ZOOM */
         .menu-list { padding: 0 20px; text-align: left; margin-top: 15px; }
         .menu-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; gap: 12px; }
-        .item-img { 
-            width: 60px; height: 60px; border-radius: 10px; object-fit: cover; 
-            cursor: pointer; animation: pulse-flame 2s infinite ease-in-out; 
-        }
+        .item-img { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; cursor: pointer; animation: pulse-flame 2s infinite ease-in-out; }
         .item-name { font-weight: 600; font-size: 16px; color: #333; flex-grow: 1; }
         .item-price { color: var(--primary-color); font-weight: bold; font-size: 15px; text-align: right; }
 
-        /* MODAL DE ZOOM (XIZINHO) */
         .modal { display: none; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
         .modal-content { max-width: 90%; max-height: 80%; border-radius: 10px; }
         .close-modal { position: absolute; top: 30px; right: 30px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; }
 
-        /* BOTÃO WHATSAPP FLUTUANTE */
         .wpp-float { position: fixed; width: 70px; height: 70px; bottom: 30px; right: 20px; z-index: 1000001; cursor: pointer; filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.3)); animation: float-pulse 2s infinite ease-in-out; }
         .wpp-float img { width: 100%; height: 100%; object-fit: contain; }
 
-        /* SETA INTELIGENTE */
-        #scroll-indicator {
-            position: fixed; bottom: 110px; left: 50%; transform: translateX(-50%);
-            z-index: 99998; display: flex; flex-direction: column; align-items: center;
-        }
-        .social-label-alert { 
-            font-size: 11px; font-weight: bold; color: white; background: var(--primary-color); 
-            padding: 4px 12px; border-radius: 20px; text-transform: uppercase; margin-bottom: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-        .arrow-circle { 
-            width: 55px; height: 55px; background: var(--primary-color); border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; 
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4); border: 3px solid white; cursor: pointer;
-            animation: bounce 2s infinite;
-        }
+        #scroll-indicator { position: fixed; bottom: 110px; left: 50%; transform: translateX(-50%); z-index: 99998; display: flex; flex-direction: column; align-items: center; }
+        .social-label-alert { font-size: 11px; font-weight: bold; color: white; background: var(--primary-color); padding: 4px 12px; border-radius: 20px; text-transform: uppercase; margin-bottom: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .arrow-circle { width: 55px; height: 55px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.4); border: 3px solid white; cursor: pointer; animation: bounce 2s infinite; }
 
-        /* PASSO A PASSO */
         .tutorial-container { padding: 25px; text-align: left; background: #fafafa; margin: 20px; border-radius: 15px; border: 1px solid #eee; }
         .tutorial-title { color: var(--primary-color); font-weight: bold; margin-bottom: 20px; text-align: center; font-size: 18px; }
         .step-item { display: flex; gap: 15px; margin-bottom: 25px; align-items: flex-start; }
@@ -78,15 +70,8 @@
         .step-txt b { display: block; font-size: 16px; color: #2c3e50; margin-bottom: 4px; }
         .step-txt p { margin: 0; font-size: 14px; color: #666; line-height: 1.5; }
 
-        /* BOTÕES */
         .btn-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 20px 30px; }
-        .btn-social { 
-            display: flex !important; align-items: center !important; justify-content: center !important; 
-            width: 100% !important; height: 60px !important; border-radius: 50px !important; 
-            text-decoration: none !important; font-weight: bold !important; font-size: 17px !important; 
-            color: white !important; border: none !important; cursor: pointer !important;
-            animation: pulse-flame 2.5s infinite ease-in-out;
-        }
+        .btn-social { display: flex !important; align-items: center !important; justify-content: center !important; width: 100% !important; height: 60px !important; border-radius: 50px !important; text-decoration: none !important; font-weight: bold !important; font-size: 17px !important; color: white !important; border: none !important; cursor: pointer !important; animation: pulse-flame 2.5s infinite ease-in-out; }
         .btn-instagram { background-color: var(--instagram-color); --flame-color: rgba(225, 48, 108, 0.4); }
         .btn-facebook { background-color: var(--facebook-color); --flame-color: rgba(24, 119, 242, 0.4); }
         .btn-tiktok { background-color: var(--tiktok-color); --flame-color: rgba(0, 0, 0, 0.2); }
@@ -102,18 +87,16 @@
 </head>
 <body>
 
-<!-- MODAL DE ZOOM -->
 <div id="imageModal" class="modal">
     <span class="close-modal" onclick="closeZoom()">&times;</span>
     <img class="modal-content" id="imgZoom">
 </div>
 
-<!-- BOTÃO WHATSAPP FLUTUANTE -->
+<!-- BOTÃO WHATSAPP (MENSAGEM DE PEDIDO VOLTOU AO NORMAL) -->
 <div class="wpp-float" onclick="directOrder()">
     <img src="https://i.ibb.co.com/6RKY8B4Y/download-removebg-preview.png" alt="WhatsApp">
 </div>
 
-<!-- SETA INTELIGENTE -->
 <div id="scroll-indicator">
     <span class="social-label-alert" id="scroll-text">Ikuti Sosial Media</span>
     <div class="arrow-circle" id="arrow-btn" onclick="smartScroll()">↓</div>
@@ -124,9 +107,9 @@
     <div class="profile-section">
         <img src="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png" class="profile-img">
     </div>
+    
     <div class="store-name">Warung Mena Paser Brasil</div>
 
-    <!-- CARDÁPIO -->
     <div class="menu-list">
         <div class="menu-item">
             <img src="https://i.ibb.co.com/8Ds7R1Vm/Whats-App-2026-05-07-at-09-52-39.jpg" class="item-img" onclick="openZoom(this.src)">
@@ -154,7 +137,6 @@
         </div>
     </div>
 
-    <!-- BOTÕES SOCIAIS E COMPARTILHAMENTO -->
     <div class="btn-wrapper" id="social-target">
         <a href="https://www.instagram.com/ningsihnovaes_darikampung" class="btn-social btn-instagram">📸 Instagram</a>
         <a href="https://www.facebook.com/share/1CbNQM6YHw/" class="btn-social btn-facebook">🔵 Facebook</a>
@@ -163,7 +145,6 @@
         <button onclick="shareLink()" class="btn-social btn-share">🔗 Bagikan ke WhatsApp</button>
     </div>
 
-    <!-- PASSO A PASSO -->
     <div class="tutorial-container" id="tutorial-target">
         <div class="tutorial-title">Cara Menggunakan Aplikasi Kami</div>
         <div class="step-item">
@@ -172,11 +153,11 @@
         </div>
         <div class="step-item">
             <div class="step-num">2</div>
-            <div class="step-txt"><b>Jelajahi Media Sosial</b><p>Gunakan tombol di atas untuk melihat promo terbaru di Instagram dan TikTok.</p></div>
+            <div class="step-txt"><b>Jelajahi Media Sosial</b><p>Gunakan tombol di atas untuk melihat promo terbaru di Instagram and TikTok.</p></div>
         </div>
         <div class="step-item">
             <div class="step-num">3</div>
-            <div class="step-txt"><b>Pesan melalui WhatsApp</b><p>Klik tombol WhatsApp yang melayang untuk memesan secara otomatis.</p></div>
+            <div class="step-txt"><b>Pesan melalui WhatsApp</b><p>Klik tombol WhatsApp yang melayang para memesan secara otomatis.</p></div>
         </div>
     </div>
 
@@ -188,7 +169,6 @@
 </div>
 
 <script>
-    // FUNÇÃO ZOOM DA IMAGEM (XIZINHO)
     function openZoom(src) {
         document.getElementById("imageModal").style.display = "flex";
         document.getElementById("imgZoom").src = src;
@@ -201,7 +181,6 @@
         const social = document.getElementById('social-target');
         const tutorial = document.getElementById('tutorial-target');
         const footer = document.getElementById('footer-target');
-        
         const socialPos = social.getBoundingClientRect().top + window.scrollY - 100;
         const tutorialPos = tutorial.getBoundingClientRect().top + window.scrollY - 100;
         const footerPos = footer.getBoundingClientRect().top + window.scrollY - 100;
@@ -230,13 +209,9 @@
             arrow.innerText = "↑";
         } else {
             arrow.innerText = "↓";
-            if (social.top > 150) {
-                text.innerText = "Ikuti Sosial Media";
-            } else if (tutorial.top > 150) {
-                text.innerText = "Cara Pesan";
-            } else {
-                text.innerText = "Bagikan Kontak";
-            }
+            if (social.top > 150) { text.innerText = "Ikuti Sosial Media"; } 
+            else if (tutorial.top > 150) { text.innerText = "Cara Pesan"; } 
+            else { text.innerText = "Bagikan Kontak"; }
         }
     });
 
