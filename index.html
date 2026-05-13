@@ -1,30 +1,17 @@
-  <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>Warung Mena Paser Brasil</title>
+    <title>Kartu Nama - Warung Mena Paser Brasil</title>
     
-    <!-- 1. CONFIGURAÇÃO DO ÍCONE PARA IPHONE (iOS) -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://i.ibb.co.com/nMmJZ2M3/Whats-App-Image-2026-05-08-at-20-53-09.jpg">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Warung Mena">
+    <!-- ÍCONE PARA TELA INICIAL (CELULARES) -->
+    <link rel="icon" type="image/png" href="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
+    <link rel="apple-touch-icon" href="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
 
-    <!-- 2. CONFIGURAÇÃO DO ÍCONE PARA ANDROID E NAVEGADORES -->
-    <link rel="icon" type="image/png" sizes="192x192" href="https://i.ibb.co.com/nMmJZ2M3/Whats-App-Image-2026-05-08-at-20-53-09.jpg">
-    <link rel="icon" type="image/png" sizes="512x512" href="https://i.ibb.co.com/nMmJZ2M3/Whats-App-Image-2026-05-08-at-20-53-09.jpg">
-    
-    <!-- 3. MANIFESTO PARA FORÇAR O ÍCONE E MODO APP (NÃO BAIXA COMO IMAGEM, VIRA ATALHO) -->
-    <link rel="manifest" href="data:application/manifest+json,{%22name%22:%22Warung%20Mena%20Paser%20Brasil%22,%22short_name%22:%22WarungMena%22,%22start_url%22:%22index.html%22,%22display%22:%22standalone%22,%22background_color%22:%22#ffffff%22,%22theme_color%22:%22#e67e22%22,%22icons%22:[{%22src%22:%22https://i.ibb.co.com/nMmJZ2M3/Whats-App-Image-2026-05-08-at-20-53-09.jpg%22,%22sizes%22:%22192x192%22,%22type%22:%22image/jpeg%22,%22purpose%22:%22any%20maskable%22},{%22src%22:%22https://i.ibb.co.com/nMmJZ2M3/Whats-App-Image-2026-05-08-at-20-53-09.jpg%22,%22sizes%22:%22512x512%22,%22type%22:%22image/jpeg%22}]}">
-
-    <!-- META TAGS DE REDES SOCIAIS -->
-    <meta name="description" content="Warung Mena Paser Brasil: Nikmati Gado-gado autentik dengan bahan berkualitas e layanan terbaik di Batu Kajang.">
-    <meta property="og:title" content="Kartu Nama - Warung Mena Paser Brasil">
-    <meta property="og:description" content="Nikmati Gado-gado autentik dengan bahan berkualitas e layanan terbaik di Batu Kajang.">
-    <meta property="og:image" content="https://i.ibb.co.com/nMmJZ2M3/Whats-App-Image-2026-05-08-at-20-53-09.jpg">
-    <meta property="og:type" content="website">
+    <!-- Script Adsterra -->
+    <script src="https://pl29368197.profitablecpmratenetwork.com/76/50/66/7650664099af8bf18005430efb542dcb.js"></script>
 
     <style>
         :root {
@@ -47,88 +34,28 @@
         .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 5px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); object-fit: cover; background-color: white; }
         .store-name { font-size: 26px; font-weight: bold; color: #2c3e50; margin: 10px 0 5px; }
 
+        /* MENU LIST COM IMAGENS PULSANTES E ZOOM */
         .menu-list { padding: 0 20px; text-align: left; margin-top: 15px; }
         .menu-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; gap: 12px; }
-        .item-img { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; cursor: pointer; animation: pulse-flame 2s infinite ease-in-out; }
+        .item-img { 
+            width: 60px; height: 60px; border-radius: 10px; object-fit: cover; 
+            cursor: pointer; animation: pulse-flame 2s infinite ease-in-out; 
+        }
         .item-name { font-weight: 600; font-size: 16px; color: #333; flex-grow: 1; }
         .item-price { color: var(--primary-color); font-weight: bold; font-size: 15px; text-align: right; }
 
-        .whatsapp-float {
-            position: fixed;
-            width: 70px;
-            height: 70px;
-            bottom: 30px;
-            right: 20px;
-            background-color: transparent;
-            z-index: 1000001;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .whatsapp-float:hover { transform: scale(1.1); }
-        .whatsapp-float img { width: 100%; height: 100%; object-fit: contain; }
+        /* MODAL DE ZOOM (XIZINHO) */
+        .modal { display: none; position: fixed; z-index: 999999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+        .modal-content { max-width: 90%; max-height: 80%; border-radius: 10px; }
+        .close-modal { position: absolute; top: 30px; right: 30px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; }
 
-        .btn-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 20px 30px; }
-        .btn-social { 
-            display: flex !important; align-items: center !important; justify-content: center !important; 
-            width: 100% !important; height: 60px !important; border-radius: 50px !important; 
-            text-decoration: none !important; font-weight: bold !important; font-size: 17px !important; 
-            color: white !important; border: none !important; cursor: pointer !important;
-            box-sizing: border-box !important; margin: 0 !important;
-            animation: pulse-flame 2.5s infinite ease-in-out;
-        }
-        .btn-instagram { background-color: var(--instagram-color); --flame-color: rgba(225, 48, 108, 0.4); }
-        .btn-facebook { background-color: var(--facebook-color); --flame-color: rgba(24, 119, 242, 0.4); }
-        .btn-tiktok { background-color: var(--tiktok-color); --flame-color: rgba(0, 0, 0, 0.2); }
-        .btn-location { background-color: var(--location-color); --flame-color: rgba(235, 77, 75, 0.4); }
-        .btn-share { background-color: var(--share-color); --flame-color: rgba(52, 152, 219, 0.4); }
+        /* BOTÃO WHATSAPP FLUTUANTE */
+        .wpp-float { position: fixed; width: 70px; height: 70px; bottom: 30px; right: 20px; z-index: 1000001; cursor: pointer; filter: drop-shadow(0px 5px 15px rgba(0,0,0,0.3)); animation: float-pulse 2s infinite ease-in-out; }
+        .wpp-float img { width: 100%; height: 100%; object-fit: contain; }
 
-        .tutorial-section { 
-            padding: 25px; 
-            text-align: left; 
-            background: #fafafa; 
-            margin: 20px; 
-            border-radius: 15px; 
-            border: 1px solid #eee; 
-            color: #444;
-        }
-        .tutorial-section h2 { 
-            color: var(--primary-color); 
-            font-size: 20px; 
-            margin-bottom: 20px; 
-            text-align: center;
-        }
-        .step-item { 
-            margin-bottom: 18px; 
-            display: flex; 
-            gap: 15px; 
-            align-items: flex-start;
-        }
-        .step-number { 
-            background: var(--primary-color); 
-            color: white; 
-            min-width: 28px; 
-            height: 28px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-weight: bold; 
-            font-size: 14px;
-        }
-        .step-text { font-size: 15px; line-height: 1.4; }
-
-        #social-bar-tips {
-            position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 400px; background: white; border-radius: 15px;
-            padding: 12px 20px; box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
-            display: flex; align-items: center; gap: 12px; z-index: 99999;
-            transition: bottom 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            border-left: 6px solid var(--primary-color);
-        }
-        #social-bar-tips.show { bottom: 20px; }
-
+        /* SETA INTELIGENTE */
         #scroll-indicator {
-            position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%);
+            position: fixed; bottom: 110px; left: 50%; transform: translateX(-50%);
             z-index: 99998; display: flex; flex-direction: column; align-items: center;
         }
         .social-label-alert { 
@@ -143,36 +70,53 @@
             animation: bounce 2s infinite;
         }
 
-        #image-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000000; justify-content: center; align-items: center; }
-        #image-overlay img { max-width: 90%; max-height: 75%; border-radius: 12px; border: 3px solid white; }
-        .close-btn { position: absolute; top: 20px; right: 20px; width: 45px; height: 45px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; border: 2px solid white; cursor: pointer; }
+        /* PASSO A PASSO */
+        .tutorial-container { padding: 25px; text-align: left; background: #fafafa; margin: 20px; border-radius: 15px; border: 1px solid #eee; }
+        .tutorial-title { color: var(--primary-color); font-weight: bold; margin-bottom: 20px; text-align: center; font-size: 18px; }
+        .step-item { display: flex; gap: 15px; margin-bottom: 25px; align-items: flex-start; }
+        .step-num { background: var(--primary-color); color: white; min-width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; flex-shrink: 0; }
+        .step-txt b { display: block; font-size: 16px; color: #2c3e50; margin-bottom: 4px; }
+        .step-txt p { margin: 0; font-size: 14px; color: #666; line-height: 1.5; }
 
-        .footer-sales { background: #f8f9fa; padding: 25px; font-size: 13px; color: #7f8c8d; border-top: 1px solid #eee; margin-top: 10px; }
-        .footer-links a { color: var(--primary-color); text-decoration: none; font-weight: bold; cursor: pointer; }
+        /* BOTÕES */
+        .btn-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 20px 30px; }
+        .btn-social { 
+            display: flex !important; align-items: center !important; justify-content: center !important; 
+            width: 100% !important; height: 60px !important; border-radius: 50px !important; 
+            text-decoration: none !important; font-weight: bold !important; font-size: 17px !important; 
+            color: white !important; border: none !important; cursor: pointer !important;
+            animation: pulse-flame 2.5s infinite ease-in-out;
+        }
+        .btn-instagram { background-color: var(--instagram-color); --flame-color: rgba(225, 48, 108, 0.4); }
+        .btn-facebook { background-color: var(--facebook-color); --flame-color: rgba(24, 119, 242, 0.4); }
+        .btn-tiktok { background-color: var(--tiktok-color); --flame-color: rgba(0, 0, 0, 0.2); }
+        .btn-location { background-color: var(--location-color); --flame-color: rgba(235, 77, 75, 0.4); }
+        .btn-share { background-color: var(--share-color); --flame-color: rgba(52, 152, 219, 0.4); }
+
+        .footer-sales { background: #f8f9fa; padding: 25px; font-size: 13px; color: #7f8c8d; border-top: 1px solid #eee; }
 
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-12px);} 60% {transform: translateY(-6px);} }
+        @keyframes float-pulse { 0% { transform: translateY(0) scale(1); } 50% { transform: translateY(-10px) scale(1.05); } 100% { transform: translateY(0) scale(1); } }
         @keyframes pulse-flame { 0% { transform: scale(1); box-shadow: 0 0 5px var(--flame-color); } 50% { transform: scale(1.02); box-shadow: 0 0 15px var(--flame-color); } 100% { transform: scale(1); } }
     </style>
 </head>
 <body>
 
-<div class="whatsapp-float" onclick="directOrder()">
+<!-- MODAL DE ZOOM -->
+<div id="imageModal" class="modal">
+    <span class="close-modal" onclick="closeZoom()">&times;</span>
+    <img class="modal-content" id="imgZoom">
+</div>
+
+<!-- BOTÃO WHATSAPP FLUTUANTE -->
+<div class="wpp-float" onclick="directOrder()">
     <img src="https://i.ibb.co.com/6RKY8B4Y/download-removebg-preview.png" alt="WhatsApp">
 </div>
 
-<div id="social-bar-tips">
-    <div class="tip-icon">💡</div>
-    <div class="tip-text" id="tip-msg">Sudah makan Gado-gado hari ini? 🥗</div>
-</div>
-
+<!-- SETA INTELIGENTE -->
 <div id="scroll-indicator">
     <span class="social-label-alert" id="scroll-text">Ikuti Sosial Media</span>
     <div class="arrow-circle" id="arrow-btn" onclick="smartScroll()">↓</div>
-</div>
-
-<div id="image-overlay">
-    <div class="close-btn" onclick="closeZoom()">×</div>
-    <img id="zoomed-image" src="" alt="Zoom">
 </div>
 
 <div class="container">
@@ -182,6 +126,7 @@
     </div>
     <div class="store-name">Warung Mena Paser Brasil</div>
 
+    <!-- CARDÁPIO -->
     <div class="menu-list">
         <div class="menu-item">
             <img src="https://i.ibb.co.com/8Ds7R1Vm/Whats-App-2026-05-07-at-09-52-39.jpg" class="item-img" onclick="openZoom(this.src)">
@@ -209,71 +154,56 @@
         </div>
     </div>
 
+    <!-- BOTÕES SOCIAIS E COMPARTILHAMENTO -->
     <div class="btn-wrapper" id="social-target">
         <a href="https://www.instagram.com/ningsihnovaes_darikampung" class="btn-social btn-instagram">📸 Instagram</a>
         <a href="https://www.facebook.com/share/1CbNQM6YHw/" class="btn-social btn-facebook">🔵 Facebook</a>
         <a href="https://www.tiktok.com/@ningsihnovaes" class="btn-social btn-tiktok">🎵 TikTok</a>
-        <a href="https://maps.google.com/?q=Warung+Mena+Paser+Brasil" class="btn-social btn-location">📍 Lokasi Warung (GPS)</a>
-        <button onclick="directShare()" class="btn-social btn-share">📲 Bagikan ke Teman</button>
+        <a href="https://maps.google.com/?q=Warung+Mena+Paser+Brasil" class="btn-social btn-location">📍 Lokasi GPS</a>
+        <button onclick="shareLink()" class="btn-social btn-share">🔗 Bagikan ke WhatsApp</button>
     </div>
 
-    <div class="tutorial-section" id="seo-target">
-        <h2>Cara Menggunakan Aplikasi Ini</h2>
-        
+    <!-- PASSO A PASSO -->
+    <div class="tutorial-container" id="tutorial-target">
+        <div class="tutorial-title">Cara Menggunakan Aplikasi Kami</div>
         <div class="step-item">
-            <div class="step-number">1</div>
-            <div class="step-text">Buka kamera ponsel Anda e arahkan ke <b>QR Code</b> di toko.</div>
+            <div class="step-num">1</div>
+            <div class="step-txt"><b>Pindai QR Code</b><p>Arahkan kamera ponsel Anda ke QR Code kami untuk membuka kartu digital ini.</p></div>
         </div>
-
         <div class="step-item">
-            <div class="step-number">2</div>
-            <div class="step-text">Ketuk tautan que aparece na tela para abrir este menu digital.</div>
+            <div class="step-num">2</div>
+            <div class="step-txt"><b>Jelajahi Media Sosial</b><p>Gunakan tombol di atas untuk melihat promo terbaru di Instagram dan TikTok.</p></div>
         </div>
-
         <div class="step-item">
-            <div class="step-number">3</div>
-            <div class="step-text">Clique no botão de opções do navegador e selecione <b>"Adicionar à tela de início"</b>.</div>
-        </div>
-
-        <div class="step-item">
-            <div class="step-number">4</div>
-            <div class="step-text">Pronto! O ícone da Warung Mena aparecerá na sua tela inicial como um aplicativo!</div>
+            <div class="step-num">3</div>
+            <div class="step-txt"><b>Pesan melalui WhatsApp</b><p>Klik tombol WhatsApp yang melayang untuk memesan secara otomatis.</p></div>
         </div>
     </div>
 
     <div class="footer-sales" id="footer-target">
         Ingin membuat kartu nama digital seperti ini?<br>
         Hubungi kami di: <b>+62 857-5275-4317</b><br><br>
-        <div class="footer-links">
-            <a onclick="openPrivacy()">Privacy Policy</a> | <a onclick="openTerms()">Terms of Service</a>
-        </div>
         <small>© 2026 Batu Kajang - Warung Mena Paser Brasil</small>
     </div>
 </div>
 
 <script>
-    const messages = ["Sudah makan Gado-gado hari ini? 🥗", "Pesan sekarang via WhatsApp! 🛒", "Gratis ongkir wilayah Batu Kajang! 🚚", "Coba Rujak segar kami hari ini! 🍎", "Lihat promo menarik di Instagram! 📸"];
-    let msgIdx = 0;
-    const bar = document.getElementById('social-bar-tips');
-    const msg = document.getElementById('tip-msg');
-
-    function showTip() {
-        if(!bar || !msg) return;
-        msg.innerText = messages[msgIdx];
-        bar.classList.add('show');
-        msgIdx = (msgIdx + 1) % messages.length;
-        setTimeout(() => bar.classList.remove('show'), 4000);
+    // FUNÇÃO ZOOM DA IMAGEM (XIZINHO)
+    function openZoom(src) {
+        document.getElementById("imageModal").style.display = "flex";
+        document.getElementById("imgZoom").src = src;
     }
-    setInterval(showTip, 8000);
-    setTimeout(showTip, 2000);
+    function closeZoom() {
+        document.getElementById("imageModal").style.display = "none";
+    }
 
     function smartScroll() {
         const social = document.getElementById('social-target');
-        const seo = document.getElementById('seo-target');
+        const tutorial = document.getElementById('tutorial-target');
         const footer = document.getElementById('footer-target');
         
         const socialPos = social.getBoundingClientRect().top + window.scrollY - 100;
-        const seoPos = seo.getBoundingClientRect().top + window.scrollY - 100;
+        const tutorialPos = tutorial.getBoundingClientRect().top + window.scrollY - 100;
         const footerPos = footer.getBoundingClientRect().top + window.scrollY - 100;
         const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 80);
 
@@ -281,8 +211,8 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } else if (window.scrollY < (socialPos - 50)) {
             window.scrollTo({ top: socialPos, behavior: 'smooth' });
-        } else if (window.scrollY < (seoPos - 50)) {
-            window.scrollTo({ top: seoPos, behavior: 'smooth' });
+        } else if (window.scrollY < (tutorialPos - 50)) {
+            window.scrollTo({ top: tutorialPos, behavior: 'smooth' });
         } else {
             window.scrollTo({ top: footerPos, behavior: 'smooth' });
         }
@@ -292,7 +222,7 @@
         const text = document.getElementById('scroll-text');
         const arrow = document.getElementById('arrow-btn');
         const social = document.getElementById('social-target').getBoundingClientRect();
-        const seo = document.getElementById('seo-target').getBoundingClientRect();
+        const tutorial = document.getElementById('tutorial-target').getBoundingClientRect();
         const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 100);
 
         if (isAtBottom) {
@@ -302,34 +232,23 @@
             arrow.innerText = "↓";
             if (social.top > 150) {
                 text.innerText = "Ikuti Sosial Media";
-            } else if (seo.top > 150) {
-                text.innerText = "Informasi Lanjut";
+            } else if (tutorial.top > 150) {
+                text.innerText = "Cara Pesan";
             } else {
-                text.innerText = "Hubungi Kami";
+                text.innerText = "Bagikan Kontak";
             }
         }
     });
 
-    function openZoom(src) { document.getElementById('zoomed-image').src = src; document.getElementById('image-overlay').style.display = 'flex'; }
-    function closeZoom() { document.getElementById('image-overlay').style.display = 'none'; }
-    
-    function openPrivacy() {
-        const win = window.open("", "_blank");
-        win.document.write(`<div style="font-family:sans-serif; padding:40px; max-width:800px; margin:auto; line-height:1.6;"><h1>Kebijakan Privasi</h1></div>`);
-    }
-
-    function openTerms() {
-        const win = window.open("", "_blank");
-        win.document.write(`<div style="font-family:sans-serif; padding:40px; max-width:800px; margin:auto; line-height:1.6;"><h1>Syarat e Ketentuan</h1></div>`);
-    }
-
     function directOrder() { 
-        const text = encodeURIComponent("Halo Warung Mena! 🥗 Saya melihat menu Anda e ingin memesan sekarang.");
+        const text = encodeURIComponent("Halo Warung Mena! 🥗 Saya ingin memesan menu hari ini. Bisa bantu saya? 🛒");
         window.location.href = "whatsapp://send?phone=6281241431977&text=" + text; 
     }
-    function directShare() { 
-        const text = encodeURIComponent("Halo teman-teman! Lihat menu lezat dari Warung Mena Paser Brasil ini 🥗");
-        window.location.href = "whatsapp://send?text=" + text + " " + window.location.href; 
+
+    function shareLink() {
+        const url = window.location.href;
+        const text = encodeURIComponent("Halo! Lihat kartu digital Warung Mena Paser Brasil: " + url);
+        window.location.href = "whatsapp://send?text=" + text;
     }
 </script>
 
