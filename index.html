@@ -1,5 +1,5 @@
-
- <!DOCTYPE html>
+ 
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -39,6 +39,20 @@
         .item-name { font-weight: 600; font-size: 16px; color: #333; flex-grow: 1; }
         .item-price { color: var(--primary-color); font-weight: bold; font-size: 15px; text-align: right; }
 
+        .whatsapp-float {
+            position: fixed;
+            width: 70px;
+            height: 70px;
+            bottom: 30px;
+            right: 20px;
+            background-color: transparent;
+            z-index: 1000001;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .whatsapp-float img { width: 100%; height: 100%; object-fit: contain; }
+
         .btn-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 20px 30px; }
         .btn-social { 
             display: flex !important; align-items: center !important; justify-content: center !important; 
@@ -48,12 +62,46 @@
             box-sizing: border-box !important; margin: 0 !important;
             animation: pulse-flame 2.5s infinite ease-in-out;
         }
-        .btn-order { background-color: var(--whatsapp-color); --flame-color: rgba(37, 211, 102, 0.4); }
         .btn-instagram { background-color: var(--instagram-color); --flame-color: rgba(225, 48, 108, 0.4); }
         .btn-facebook { background-color: var(--facebook-color); --flame-color: rgba(24, 119, 242, 0.4); }
         .btn-tiktok { background-color: var(--tiktok-color); --flame-color: rgba(0, 0, 0, 0.2); }
         .btn-location { background-color: var(--location-color); --flame-color: rgba(235, 77, 75, 0.4); }
         .btn-share { background-color: var(--share-color); --flame-color: rgba(52, 152, 219, 0.4); }
+
+        .tutorial-section { 
+            padding: 25px; 
+            text-align: left; 
+            background: #fafafa; 
+            margin: 20px; 
+            border-radius: 15px; 
+            border: 1px solid #eee; 
+            color: #444;
+        }
+        .tutorial-section h2 { 
+            color: var(--primary-color); 
+            font-size: 20px; 
+            margin-bottom: 20px; 
+            text-align: center;
+        }
+        .step-item { 
+            margin-bottom: 18px; 
+            display: flex; 
+            gap: 15px; 
+            align-items: flex-start;
+        }
+        .step-number { 
+            background: var(--primary-color); 
+            color: white; 
+            min-width: 28px; 
+            height: 28px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: bold; 
+            font-size: 14px;
+        }
+        .step-text { font-size: 15px; line-height: 1.4; }
 
         #social-bar-tips {
             position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%);
@@ -85,9 +133,6 @@
         #image-overlay img { max-width: 90%; max-height: 75%; border-radius: 12px; border: 3px solid white; }
         .close-btn { position: absolute; top: 20px; right: 20px; width: 45px; height: 45px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; border: 2px solid white; cursor: pointer; }
 
-        .seo-content { padding: 25px; text-align: justify; line-height: 1.8; color: #666; font-size: 14px; background: #fafafa; margin: 20px; border-radius: 15px; border: 1px solid #eee; }
-        .seo-content h2 { color: var(--primary-color); font-size: 18px; margin-top: 15px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
-
         .footer-sales { background: #f8f9fa; padding: 25px; font-size: 13px; color: #7f8c8d; border-top: 1px solid #eee; margin-top: 10px; }
         .footer-links a { color: var(--primary-color); text-decoration: none; font-weight: bold; cursor: pointer; }
 
@@ -96,6 +141,11 @@
     </style>
 </head>
 <body>
+
+<!-- Botão Flutuante do WhatsApp -->
+<div class="whatsapp-float" onclick="directOrder()">
+    <img src="https://i.ibb.co.com/6RKY8B4Y/download-removebg-preview.png" alt="WhatsApp">
+</div>
 
 <div id="social-bar-tips">
     <div class="tip-icon">💡</div>
@@ -147,7 +197,6 @@
     </div>
 
     <div class="btn-wrapper" id="social-target">
-        <button onclick="directOrder()" class="btn-social btn-order">🛒 Pesan Sekarang (WhatsApp)</button>
         <a href="https://www.instagram.com/ningsihnovaes_darikampung" class="btn-social btn-instagram">📸 Instagram</a>
         <a href="https://www.facebook.com/share/1CbNQM6YHw/" class="btn-social btn-facebook">🔵 Facebook</a>
         <a href="https://www.tiktok.com/@ningsihnovaes" class="btn-social btn-tiktok">🎵 TikTok</a>
@@ -155,13 +204,29 @@
         <button onclick="directShare()" class="btn-social btn-share">📲 Bagikan ke Teman</button>
     </div>
 
-    <div class="seo-content" id="seo-target">
-        <h2>Kelezatan Autentik Warung Mena di Batu Kajang</h2>
-        <p><strong>Warung Mena Paser Brasil</strong> telah menjadi ikon kuliner sehat di wilayah Batu Kajang. Kami berkomitmen para pelanggan untuk menyajikan hidangan Gado-gado terbaik dengan cita rasa yang tetap terjaga sejak hari pertama kami melayani masyarakat.</p>
-        <h2>Mengapa Memilih Hidangan Kami?</h2>
-        <p>Kesehatan e kepuasan pelanggan adalah prioritas utama kami. Semua bahan baku sayuran, kacang, e bumbu yang kami gunakan dipasok setiap hari untuk menjamin kesegaran maksimal e rasa yang tiada duanya di setiap porsinya.</p>
-        <h2>Kemudahan Pemesanan Digital</h2>
-        <p>Di era modern ini, kami menghadirkan layanan digital melalui WhatsApp untuk memudahkan pesanan Anda. Cukup klik tombol di atas e hidangan favorit Anda akan segera kami proses untuk dinikmati bersama keluarga di rumah.</p>
+    <!-- Passo a Passo em Indonésio -->
+    <div class="tutorial-section" id="seo-target">
+        <h2>Cara Menggunakan Aplikasi Ini</h2>
+        
+        <div class="step-item">
+            <div class="step-number">1</div>
+            <div class="step-text">Buka kamera ponsel Anda dan arahkan ke <b>QR Code</b> di toko.</div>
+        </div>
+
+        <div class="step-item">
+            <div class="step-number">2</div>
+            <div class="step-text">Ketuk tautan yang muncul di layar untuk membuka menu digital ini.</div>
+        </div>
+
+        <div class="step-item">
+            <div class="step-number">3</div>
+            <div class="step-text">Jelajahi <b>media sosial</b> kami dan lihat <b>menu lengkap</b> toko kami.</div>
+        </div>
+
+        <div class="step-item">
+            <div class="step-number">4</div>
+            <div class="step-text">Klik <b>tombol WhatsApp melayang</b> untuk mengirim pesanan Anda langsung ke dapur!</div>
+        </div>
     </div>
 
     <div class="footer-sales" id="footer-target">
@@ -240,14 +305,7 @@
         const win = window.open("", "_blank");
         win.document.write(`<div style="font-family:sans-serif; padding:40px; max-width:800px; margin:auto; line-height:1.6;">
             <h1>Kebijakan Privasi - Warung Mena Paser Brasil</h1>
-            <p>Di Warung Mena, privasi Anda adalah prioritas kami. Dokumen ini merinci jenis informasi pribadi yang diterima dan dikumpulkan serta bagaimana informasi tersebut digunakan.</p>
-            <h3>1. Pengumpulan Data</h3>
-            <p>Kami hanya mengumpulkan data seperti nama dan nomor telepon yang Anda berikan secara sukarela saat melakukan pemesanan melalui WhatsApp untuk memastikan layanan pengiriman yang akurat.</p>
-            <h3>2. Penggunaan Informasi</h3>
-            <p>Informasi Anda digunakan untuk memproses pesanan, memberikan konfirmasi, dan meningkatkan pengalaman layanan pelanggan kami.</p>
-            <h3>3. Perlindungan Data</h3>
-            <p>Kami menjamin bahwa data pribadi Anda tidak akan pernah dijual, disewakan, atau dibagikan kepada pihak ketiga untuk tujuan pemasaran tanpa persetujuan eksplisit dari Anda.</p>
-            <p><i>Terakhir diperbarui: Mei 2026</i></p>
+            <p>Di Warung Mena, privasi Anda adalah prioritas kami.</p>
         </div>`);
     }
 
@@ -255,15 +313,7 @@
         const win = window.open("", "_blank");
         win.document.write(`<div style="font-family:sans-serif; padding:40px; max-width:800px; margin:auto; line-height:1.6;">
             <h1>Syarat dan Ketentuan Layanan</h1>
-            <p>Selamat datang di Warung Mena Paser Brasil. Dengan mengakses situs ini, Anda setuju untuk mematuhi syarat dan ketentuan berikut:</p>
-            <h3>1. Layanan Pemesanan</h3>
-            <p>Semua pesanan diproses melalui platform WhatsApp. Ketersediaan menu dapat berubah sewaktu-waktu tergantung pada stok bahan baku segar harian kami.</p>
-            <h3>2. Harga dan Pembayaran</h3>
-            <p>Harga yang tercantum adalah dalam Rupiah (Rp). Pembayaran dilakukan sesuai kesepakatan saat konfirmasi via WhatsApp.</p>
-            <h3>3. Kebijakan Pengiriman</h3>
-            <p>Layanan pengiriman gratis berlaku khusus untuk area Batu Kajang. Untuk area di luar jangkauan tersebut, biaya tambahan mungkin berlaku.</p>
-            <h3>4. Tanggung Jawab</h3>
-            <p>Warung Mena berkomitmen pada kualitas rasa e kesehatan produk. Namun, kami tidak bertanggung jawab atas masalah teknis pada perangkat atau koneksi internet pengguna.</p>
+            <p>Selamat datang di Warung Mena Paser Brasil.</p>
         </div>`);
     }
 
@@ -276,10 +326,6 @@
         window.location.href = "whatsapp://send?text=" + text + " " + window.location.href; 
     }
 </script>
-
-<script type="text/javascript"> var infolinks_pid = 3445428; var infolinks_wsid = 0; </script> 
-<script type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script>
-<script src="https://pl29368197.profitablecpmratenetwork.com/76/50/66/7650664099af8bf18005430efb542dcb.js"></script>
 
 </body>
 </html>
