@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>Kartu Nama - Warung Mena Paser Brasil</title>
+    <title>Warung Mena Paser Brasil</title>
     
-    <!-- ÍCONES PARA TELA INICIAL (FAVICON) -->
+    <!-- CONFIGURAÇÃO DO ÍCONE PARA CELULAR (ANDROID E IPHONE) -->
     <link rel="icon" type="image/png" href="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
-    <link rel="apple-touch-icon" href="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
-    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
+    <link rel="apple-touch-icon-precomposed" href="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
+    
+    <!-- ESTE BLOCO ABAIXO FORÇA O CELULAR A RECONHECER COMO APP -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Warung Mena">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Warung Mena">
+    
+    <!-- MANIFESTO SIMPLIFICADO -->
+    <link rel="manifest" href="data:application/manifest+json,{%22name%22:%22Warung%20Mena%22,%22short_name%22:%22WarungMena%22,%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22icons%22:[{%22src%22:%22https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png%22,%22sizes%22:%22192x192%22,%22type%22:%22image/png%22}]}">
 
     <meta name="description" content="Warung Mena Paser Brasil: Nikmati Gado-gado autentik dengan bahan berkualitas e layanan terbaik di Batu Kajang.">
     <meta property="og:title" content="Kartu Nama - Warung Mena Paser Brasil">
@@ -148,7 +157,6 @@
 </head>
 <body>
 
-<!-- Botão Flutuante do WhatsApp -->
 <div class="whatsapp-float" onclick="directOrder()">
     <img src="https://i.ibb.co.com/6RKY8B4Y/download-removebg-preview.png" alt="WhatsApp">
 </div>
@@ -215,22 +223,22 @@
         
         <div class="step-item">
             <div class="step-number">1</div>
-            <div class="step-text">Buka kamera ponsel Anda dan arahkan ke <b>QR Code</b> di toko.</div>
+            <div class="step-text">Buka kamera ponsel Anda e arahkan ke <b>QR Code</b> di toko.</div>
         </div>
 
         <div class="step-item">
             <div class="step-number">2</div>
-            <div class="step-text">Ketuk tautan yang muncul di layar untuk membuka menu digital ini.</div>
+            <div class="step-text">Ketuk tautan yang muncul di layar para membuka menu digital ini.</div>
         </div>
 
         <div class="step-item">
             <div class="step-number">3</div>
-            <div class="step-text">Jelajahi <b>media sosial</b> kami dan lihat <b>menu lengkap</b> toko kami.</div>
+            <div class="step-text">Jelajahi <b>media sosial</b> kami e lihat <b>menu lengkap</b> toko kami.</div>
         </div>
 
         <div class="step-item">
             <div class="step-number">4</div>
-            <div class="step-text">Klik <b>tombol WhatsApp melayang</b> untuk mengirim pesanan Anda langsung ke dapur!</div>
+            <div class="step-text">Klik <b>tombol WhatsApp melayang</b> para mengirim pesanan Anda langsung ke dapur!</div>
         </div>
     </div>
 
@@ -308,12 +316,12 @@
     
     function openPrivacy() {
         const win = window.open("", "_blank");
-        win.document.write(`<div style="font-family:sans-serif; padding:40px; max-width:800px; margin:auto; line-height:1.6;"><h1>Kebijakan Privasi - Warung Mena Paser Brasil</h1></div>`);
+        win.document.write(`<div style="font-family:sans-serif; padding:40px; max-width:800px; margin:auto; line-height:1.6;"><h1>Kebijakan Privasi</h1></div>`);
     }
 
     function openTerms() {
         const win = window.open("", "_blank");
-        win.document.write(`<div style="font-family:sans-serif; padding:40px; max-width:800px; margin:auto; line-height:1.6;"><h1>Syarat dan Ketentuan Layanan</h1></div>`);
+        win.document.write(`<div style="font-family:sans-serif; padding:40px; max-width:800px; margin:auto; line-height:1.6;"><h1>Syarat e Ketentuan</h1></div>`);
     }
 
     function directOrder() { 
