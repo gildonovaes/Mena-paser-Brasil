@@ -82,7 +82,7 @@
 <body onclick="iniciarMusica()">
 
 <audio id="bgMusic" loop>
-    <source src="musica.mp3" type="audio/mpeg">
+    <source src="https://files.catbox.moe/ek5q1t.mp3" type="audio/mpeg">
 </audio>
 
 <div id="imageModal" class="modal">
@@ -166,16 +166,16 @@
 </div>
 
 <script>
-    // --- LÓGICA DA MÚSICA ---
+    // --- LÓGICA DA MÚSICA COM LOOP EM 31 SEGUNDOS ---
     var audio = document.getElementById("bgMusic");
     var musicaIniciada = false;
 
     function iniciarMusica() {
         if (!musicaIniciada) {
-            audio.play().catch(e => console.log("Interação necessária"));
+            audio.play().catch(e => console.log("Clique necessário para áudio"));
             musicaIniciada = true;
             
-            // Loop forçado em 31 segundos
+            // Força o reinício quando chegar em 31 segundos (Loop)
             audio.ontimeupdate = function() {
                 if (audio.currentTime >= 31) {
                     audio.currentTime = 0;
@@ -215,7 +215,7 @@
         }
     }
 
-    // --- MONITOR DE SCROLL PARA TEXTO ---
+    // --- MONITOR DE SCROLL PARA MUDAR O TEXTO ---
     window.addEventListener('scroll', () => {
         const text = document.getElementById('scroll-text');
         const arrow = document.getElementById('arrow-btn');
@@ -234,7 +234,7 @@
         }
     });
 
-    // --- FUNÇÕES DE WHATSAPP ---
+    // --- FUNÇÕES DE PEDIDO E COMPARTILHAMENTO ---
     function directOrder() { 
         const text = encodeURIComponent("Halo Warung Mena! 🥗 Saya ingin memesan menu hari ini. Bisa bantu saya? 🛒");
         window.location.href = "whatsapp://send?phone=6281241431977&text=" + text; 
