@@ -1,26 +1,21 @@
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- CONFIGURAÇÃO DO BALÃO DE PRÉ-VISUALIZAÇÃO (WHATSAPP) -->
     <title>Kartu Nama - Warung Mena Paser Brasil</title>
     <meta name="description" content="Nikmati Gado-gado autentik dengan bahan berkualitas e layanan terbaik di gildonovaes.github.io">
     
-    <!-- Meta tags para o balão do WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Kartu Nama - Warung Mena Paser Brasil">
     <meta property="og:description" content="Nikmati Gado-gado autentik dengan bahan berkualitas e layanan terbaik di gildonovaes.github.io">
     <meta property="og:image" content="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
     <meta property="og:url" content="https://gildonovaes.github.io">
 
-    <!-- ÍCONE PARA TELA INICIAL -->
     <link rel="icon" type="image/png" href="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
     <link rel="apple-touch-icon" href="https://i.ibb.co.com/Rk8FFvyL/Whats-App-Image-2026-05-08-at-20-53-09-removebg-preview.png">
 
-    <!-- Script Adsterra -->
     <script src="https://pl29368197.profitablecpmratenetwork.com/76/50/66/7650664099af8bf18005430efb542dcb.js"></script>
 
     <style>
@@ -44,7 +39,6 @@
         .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 5px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); object-fit: cover; background-color: white; }
         
         .store-name { font-size: 26px; font-weight: bold; color: #2c3e50; margin: 10px 0 30px; }
-        .store-desc { display: none; } /* Removido da visualização da página */
 
         .menu-list { padding: 0 20px; text-align: left; margin-top: 15px; }
         .menu-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; gap: 12px; }
@@ -85,14 +79,17 @@
         @keyframes pulse-flame { 0% { transform: scale(1); box-shadow: 0 0 5px var(--flame-color); } 50% { transform: scale(1.02); box-shadow: 0 0 15px var(--flame-color); } 100% { transform: scale(1); } }
     </style>
 </head>
-<body>
+<body onclick="iniciarMusica()">
+
+<audio id="bgMusic" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
 
 <div id="imageModal" class="modal">
-    <span class="close-modal" onclick="closeZoom()">&times;</span>
+    <span class="close-modal" onclick="closeZoom()">×</span>
     <img class="modal-content" id="imgZoom">
 </div>
 
-<!-- BOTÃO WHATSAPP (MENSAGEM DE PEDIDO VOLTOU AO NORMAL) -->
 <div class="wpp-float" onclick="directOrder()">
     <img src="https://i.ibb.co.com/6RKY8B4Y/download-removebg-preview.png" alt="WhatsApp">
 </div>
@@ -149,11 +146,11 @@
         <div class="tutorial-title">Cara Menggunakan Aplikasi Kami</div>
         <div class="step-item">
             <div class="step-num">1</div>
-            <div class="step-txt"><b>Pindai QR Code</b><p>Arahkan kamera ponsel Anda ke QR Code kami untuk membuka kartu digital ini.</p></div>
+            <div class="step-txt"><b>Pindai QR Code</b><p>Arahkan kamera ponsel Anda ke QR Code kami para membuka kartu digital ini.</p></div>
         </div>
         <div class="step-item">
             <div class="step-num">2</div>
-            <div class="step-txt"><b>Jelajahi Media Sosial</b><p>Gunakan tombol di atas untuk melihat promo terbaru di Instagram and TikTok.</p></div>
+            <div class="step-txt"><b>Jelajahi Media Sosial</b><p>Gunakan tombol di atas para melihat promo terbaru di Instagram and TikTok.</p></div>
         </div>
         <div class="step-item">
             <div class="step-num">3</div>
@@ -169,6 +166,26 @@
 </div>
 
 <script>
+    // --- LÓGICA DA MÚSICA ---
+    var audio = document.getElementById("bgMusic");
+    var musicaIniciada = false;
+
+    function iniciarMusica() {
+        if (!musicaIniciada) {
+            audio.play().catch(e => console.log("Interação necessária"));
+            musicaIniciada = true;
+            
+            // Loop forçado em 31 segundos
+            audio.ontimeupdate = function() {
+                if (audio.currentTime >= 31) {
+                    audio.currentTime = 0;
+                    audio.play();
+                }
+            };
+        }
+    }
+
+    // --- ZOOM DE IMAGEM ---
     function openZoom(src) {
         document.getElementById("imageModal").style.display = "flex";
         document.getElementById("imgZoom").src = src;
@@ -177,6 +194,7 @@
         document.getElementById("imageModal").style.display = "none";
     }
 
+    // --- SCROLL INTELIGENTE ---
     function smartScroll() {
         const social = document.getElementById('social-target');
         const tutorial = document.getElementById('tutorial-target');
@@ -197,6 +215,7 @@
         }
     }
 
+    // --- MONITOR DE SCROLL PARA TEXTO ---
     window.addEventListener('scroll', () => {
         const text = document.getElementById('scroll-text');
         const arrow = document.getElementById('arrow-btn');
@@ -215,6 +234,7 @@
         }
     });
 
+    // --- FUNÇÕES DE WHATSAPP ---
     function directOrder() { 
         const text = encodeURIComponent("Halo Warung Mena! 🥗 Saya ingin memesan menu hari ini. Bisa bantu saya? 🛒");
         window.location.href = "whatsapp://send?phone=6281241431977&text=" + text; 
